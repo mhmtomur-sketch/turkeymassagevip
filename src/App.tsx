@@ -1,12 +1,12 @@
 ﻿import React from 'react';
-import { Link, Routes, Route, useLocation } from 'react-router-dom';
-import { Link, HomePage } from './pages/HomePage';
-import { Link, ProfileDetailPage } from './pages/ProfileDetailPage';
-import { Link, CityLandingPage } from './pages/CityLandingPage';
-import { Link, AdminPage } from './pages/AdminPage';
+import { Routes, Route, useLocation, Link } from 'react-router-dom';
+import { HomePage } from './pages/HomePage';
+import { ProfileDetailPage } from './pages/ProfileDetailPage';
+import { CityLandingPage } from './pages/CityLandingPage';
+import { AdminPage } from './pages/AdminPage';
 import Header from './components/layout/Header';
-import { Link, Footer } from './components/layout/Footer';
-import { Link, SeoHead } from './components/seo/SeoHead';
+import { Footer } from './components/layout/Footer';
+import { SeoHead } from './components/seo/SeoHead';
 
 export function App() {
   const location = useLocation();
@@ -25,11 +25,24 @@ export function App() {
 
             {/* CANLI VE HER ZAMAN GÖRÜNEN SABİT YÖNETİCİ PANELİ BUTONU */}
       {!isAdmin && (
-        <div className="fixed bottom-6 right-6 z-[999999]">
+        <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 999999 }}>
           <Link
             to="/admin"
-            className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-black text-sm px-5 py-3.5 rounded-full shadow-2xl border-2 border-white transform hover:scale-105 transition-all duration-200"
-            style={{ textDecoration: 'none', boxShadow: '0 8px 30px rgba(212, 175, 55, 0.6)' }}
+            style={{
+              backgroundColor: '#D4AF37',
+              color: '#000000',
+              fontWeight: '900',
+              fontSize: '15px',
+              padding: '14px 24px',
+              borderRadius: '50px',
+              boxShadow: '0 6px 25px rgba(212, 175, 55, 0.7)',
+              border: '2px solid #ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              textDecoration: 'none',
+              cursor: 'pointer'
+            }}
           >
             👑 VIP Yönetici Girişi
           </Link>
@@ -57,5 +70,4 @@ export function App() {
   );
 }
 export default App;
-
 
