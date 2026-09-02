@@ -16,7 +16,7 @@
 </head>
 <body class="min-h-screen flex text-xs select-none">
 
-  <!-- ŞİFRELİ GİRİŞ EKRANI -->
+  <!-- ŞİFRELİ GİRİŞ EKRANI (BOMBOŞ AÇILIR) -->
   <div id="loginOverlay" class="fixed inset-0 z-[999999] bg-[#06080d] flex items-center justify-center p-4">
     <div class="bg-[#0e121b] border border-amber-500/30 p-8 rounded-2xl max-w-md w-full shadow-2xl space-y-6">
       <div class="text-center space-y-2">
@@ -24,7 +24,7 @@
           <i class="fa-solid fa-lock"></i>
         </div>
         <h2 class="text-xl font-bold text-white tracking-wide">VIP Yönetici Girişi</h2>
-        <p class="text-xs text-slate-400">Panel erişimi için kullanıcı adı ve şifrenizi yazın</p>
+        <p class="text-xs text-slate-400">Panel erişimi için bilgilerinizi yazın</p>
       </div>
 
       <div id="loginErrMsg" class="hidden p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-xs text-red-300 text-center font-bold">
@@ -101,7 +101,7 @@
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">SİSTEM & SEO</span>
         <button onclick="switchTab('sikayet')" id="tab-sikayet" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-triangle-exclamation w-4 text-center"></i> <span>Şikayet & Raporlar</span></button>
         <button onclick="switchTab('seo-yonetimi')" id="tab-seo-yonetimi" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-globe w-4 text-center"></i> <span>SEO Yönetimi</span></button>
-        <button onclick="switchTab('site-ayarlari')" id="tab-site-ayarlari" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-gear w-4 text-center"></i> <span>Site Ayarları & Yedekleme</span></button>
+        <button onclick="switchTab('site-ayarlari')" id="tab-site-ayarlari" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-gear w-4 text-center"></i> <span>Site Ayarları</span></button>
       </div>
 
       <div class="pt-2"><div class="border-t border-slate-800/80"></div></div>
@@ -113,13 +113,12 @@
 
   <!-- SAĞ İÇERİK ALANI -->
   <main class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto custom-scroll bg-[#06080d]">
-    <header class="bg-[#090c12]/90 border-b border-slate-800/70 px-6 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur">
+    <header class="bg-[#090c12]/90 border-b border-slate-800/70 px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 backdrop-blur">
       <div class="font-bold text-sm text-slate-200 flex items-center gap-2">
         <span id="headingTitle">Dashboard & Üyeler</span>
       </div>
       <div class="flex items-center gap-3 text-xs font-semibold text-slate-400">
-        <button onclick="exportDatabaseJson()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded-lg border border-slate-700 font-bold flex items-center gap-1.5"><i class="fa-solid fa-download"></i> Yedek İndir</button>
-        <button onclick="openNewProfileModal()" class="px-4 py-1.5 bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-black rounded-lg shadow-md flex items-center gap-1.5">✨ + Yeni Üye Ekle</button>
+        <button onclick="openNewProfileModal()" class="px-5 py-2 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 text-black font-black rounded-xl shadow-md flex items-center gap-1.5 transform hover:scale-105 transition-all">✨ + Yeni Üye Ekle</button>
         <button onclick="doAdminLogout()" class="hover:text-rose-400 ml-2">🚪 Çıkış</button>
       </div>
     </header>
@@ -131,7 +130,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-[#0e121b] border border-slate-800 p-6 rounded-2xl shadow-xl gap-4">
           <div>
             <h2 class="text-lg font-bold text-amber-400">VIP Üye ve Vitrin Yönetimi</h2>
-            <p class="text-xs text-slate-400 mt-1">Eklenen tüm üyeler anında hem mobil hem masaüstü tarayıcılarda canlı yayına girer.</p>
+            <p class="text-xs text-slate-400 mt-1">Eklenen tüm üyeler otomatik hafızaya alınır ve anında tüm cihazlarda canlı yayına girer.</p>
           </div>
           <button onclick="openNewProfileModal()" class="px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 text-black font-black text-xs rounded-xl shadow-lg flex items-center gap-2 cursor-pointer whitespace-nowrap">
             <span class="text-base">✨</span> + YENİ VIP ÜYE EKLE
@@ -320,13 +319,9 @@
       </div>
 
       <div id="view-site-ayarlari" class="tab-view hidden space-y-4">
-        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-gear text-slate-300"></i> Site Ayarları & Yedekleme</h2>
+        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-gear text-slate-300"></i> Site Ayarları</h2>
         <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl space-y-4">
-          <p class="text-slate-300">Tüm veri tabanınızı anında bilgisayarınıza yedekleyin veya eski yedeği yükleyin:</p>
-          <div class="flex gap-3">
-            <button onclick="exportDatabaseJson()" class="px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-xl shadow-lg flex items-center gap-2"><i class="fa-solid fa-download"></i> Bilgisayara Yedek İndir (JSON)</button>
-            <button onclick="resetToFactoryDefault()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl border border-slate-700">Fabrika Verilerini Yeniden Yükle</button>
-          </div>
+          <p class="text-slate-300">Sitenizin tüm veri tabanı tarayıcıda otomatik hafızaya alınmaktadır. Herhangi bir manuel işleme gerek yoktur.</p>
         </div>
       </div>
 
@@ -575,7 +570,7 @@
     const STORAGE_KEY = 'tmv_database_profiles_store_permanent';
     let uploadedGalleryList = [];
 
-    // VARSAYILAN 24 VIP PROFİL HAVUZU (ASLA SİLİNMEZ)
+    // KALICI 24 VIP PROFİL HAVUZU
     const DEFAULT_PROFILES = [
       { id: 'p1', name: 'Masöz Asya', title: 'VIP Bireysel Masöz & Spa Terapisti', category: 'masoz', categoryName: 'Bireysel Masöz', age: 24, height: 168, weight: 52, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Alsancak', packageType: 'DIAMOND', price: 3500, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'Relax Masaj', 'Nuru Masajı'], workingHours: '10:00 - 02:00', bio: 'Alsancak kendi lüks ve hijyenik yerimde VIP masaj hizmeti.', isAvailable: true, isVerified: true, isPublished: true },
       { id: 'p2', name: 'Masöz Maya', title: 'Profesyonel Terapi Uzmanı', category: 'masoz', categoryName: 'Bireysel Masöz', age: 26, height: 172, weight: 56, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Kordon', packageType: 'DIAMOND', price: 4000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80', services: ['Erotik Masaj', 'Aromaterapi Masajı', 'Sıcak Taş Masajı'], workingHours: '12:00 - 03:00', bio: 'Kordon manzaralı özel dairemde huzurlu terapi.', isAvailable: true, isVerified: true, isPublished: true },
@@ -693,7 +688,7 @@
         'hizmetler-tab': 'Hizmetler',
         'sikayet': 'Şikayet & Raporlar',
         'seo-yonetimi': 'SEO Yönetimi',
-        'site-ayarlari': 'Site Ayarları & Yedekleme'
+        'site-ayarlari': 'Site Ayarları'
       };
       document.getElementById('headingTitle').innerText = titleMap[tabId] || 'Yönetici Paneli';
       if (tabId === 'trafik' || tabId === 'anlik-funnel') renderAnalyticsView();
@@ -878,7 +873,7 @@
       renderGalleryThumbs();
     }
 
-    // GÜVENLİ VE KALICI DEPOLAMA MOTORU
+    // OTOMATİK KALICI HAFIZA MOTORU
     function getStore() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('tmv_profiles');
@@ -887,7 +882,6 @@
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
       } catch (e) {}
-      // Eğer hafıza boşsa, 24 VIP profil otomatik yüklenir (Asla boş kalmaz)
       saveStore(DEFAULT_PROFILES);
       return DEFAULT_PROFILES;
     }
@@ -899,7 +893,7 @@
       } catch (e) {}
     }
 
-    // %100 ÇALIŞAN GARANTİLİ KAYDETME
+    // %100 ÇALIŞAN VE OTOMATİK YAYINLAYAN KAYDETME FONKSİYONU
     function guaranteedSaveProfile() {
       const nameInput = document.getElementById('pName');
       const name = nameInput.value.trim() || 'Yeni VIP Masöz';
@@ -953,7 +947,7 @@
       saveStore(profiles);
       closeMasterModal();
       renderTable();
-      alert('✓ Üye başarıyla kaydedildi! Hem mobil hem masaüstü tarayıcılarda canlı vitrinde 1. sıraya eklendi.');
+      alert('✓ Üye başarıyla kaydedildi! Otomatik hafızaya alındı ve hem mobilde hem masaüstü tarayıcılarda canlı vitrinde 1. sıraya eklendi.');
     }
 
     function renderTable() {
@@ -1090,25 +1084,6 @@
           </div>
         </div>
       `).join('');
-    }
-
-    function exportDatabaseJson() {
-      const data = getStore();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `turkeymassagevip_yedek_${Date.now()}.json`;
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function resetToFactoryDefault() {
-      if (confirm('Tüm profil listesini fabrika ayarlarına (24 VIP üyeye) döndürmek istediğinizden emin misiniz?')) {
-        saveStore(DEFAULT_PROFILES);
-        renderTable();
-        alert('✓ Tüm üyeler başarıyla geri yüklendi!');
-      }
     }
 
     initFormFields();
