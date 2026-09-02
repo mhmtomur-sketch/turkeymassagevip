@@ -1,12 +1,12 @@
 ﻿import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { ProfileDetailPage } from './pages/ProfileDetailPage';
-import { CityLandingPage } from './pages/CityLandingPage';
-import { AdminPage } from './pages/AdminPage';
+import { Link, Routes, Route, useLocation } from 'react-router-dom';
+import { Link, HomePage } from './pages/HomePage';
+import { Link, ProfileDetailPage } from './pages/ProfileDetailPage';
+import { Link, CityLandingPage } from './pages/CityLandingPage';
+import { Link, AdminPage } from './pages/AdminPage';
 import Header from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { SeoHead } from './components/seo/SeoHead';
+import { Link, Footer } from './components/layout/Footer';
+import { Link, SeoHead } from './components/seo/SeoHead';
 
 export function App() {
   const location = useLocation();
@@ -23,6 +23,18 @@ export function App() {
       {/* Sadece Normal Sitede Göster, Admin Panelinde Gizle */}
       {!isAdmin && <Header />}
 
+            {/* CANLI VE HER ZAMAN GÖRÜNEN SABİT YÖNETİCİ PANELİ BUTONU */}
+      {!isAdmin && (
+        <div className="fixed bottom-6 right-6 z-[999999]">
+          <Link
+            to="/admin"
+            className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-black text-sm px-5 py-3.5 rounded-full shadow-2xl border-2 border-white transform hover:scale-105 transition-all duration-200"
+            style={{ textDecoration: 'none', boxShadow: '0 8px 30px rgba(212, 175, 55, 0.6)' }}
+          >
+            👑 VIP Yönetici Girişi
+          </Link>
+        </div>
+      )}
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -45,4 +57,5 @@ export function App() {
   );
 }
 export default App;
+
 
