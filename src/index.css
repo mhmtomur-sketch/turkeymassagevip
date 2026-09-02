@@ -1,0 +1,53 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#070b1b] text-slate-100 font-sans antialiased selection:bg-amber-400 selection:text-slate-950;
+  }
+}
+
+/* ========================================================================== */
+/* ULTRA GÖZ ALICI ÇİFT KATMANLI NEON IŞILTI MOTORU */
+/* ========================================================================== */
+@keyframes intenseNeonShift {
+  0%   { border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.8), 0 0 30px rgba(255, 0, 85, 0.4); }
+  16%  { border-color: #ff00cc; box-shadow: 0 0 15px rgba(255, 0, 204, 0.8), 0 0 30px rgba(255, 0, 204, 0.4); }
+  33%  { border-color: #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(0, 240, 255, 0.4); }
+  50%  { border-color: #00ff66; box-shadow: 0 0 15px rgba(0, 255, 102, 0.8), 0 0 30px rgba(0, 255, 102, 0.4); }
+  66%  { border-color: #ffd700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4); }
+  83%  { border-color: #9900ff; box-shadow: 0 0 15px rgba(153, 0, 255, 0.8), 0 0 30px rgba(153, 0, 255, 0.4); }
+  100% { border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.8), 0 0 30px rgba(255, 0, 85, 0.4); }
+}
+
+.neon-card-0 { border: 3.5px solid #ff0055; box-shadow: 0 0 18px rgba(255, 0, 85, 0.75), 0 0 35px rgba(255, 0, 85, 0.35); animation: intenseNeonShift 16s ease-in-out infinite; animation-delay: 0s; }
+.neon-card-1 { border: 3.5px solid #ff00cc; box-shadow: 0 0 18px rgba(255, 0, 204, 0.75), 0 0 35px rgba(255, 0, 204, 0.35); animation: intenseNeonShift 18s ease-in-out infinite; animation-delay: -2.5s; }
+.neon-card-2 { border: 3.5px solid #00f0ff; box-shadow: 0 0 18px rgba(0, 240, 255, 0.75), 0 0 35px rgba(0, 240, 255, 0.35); animation: intenseNeonShift 20s ease-in-out infinite; animation-delay: -5s; }
+.neon-card-3 { border: 3.5px solid #00ff66; box-shadow: 0 0 18px rgba(0, 255, 102, 0.75), 0 0 35px rgba(0, 255, 102, 0.35); animation: intenseNeonShift 22s ease-in-out infinite; animation-delay: -7.5s; }
+.neon-card-4 { border: 3.5px solid #ffd700; box-shadow: 0 0 18px rgba(255, 215, 0, 0.75), 0 0 35px rgba(255, 215, 0, 0.35); animation: intenseNeonShift 19s ease-in-out infinite; animation-delay: -10s; }
+.neon-card-5 { border: 3.5px solid #9900ff; box-shadow: 0 0 18px rgba(153, 0, 255, 0.75), 0 0 35px rgba(153, 0, 255, 0.35); animation: intenseNeonShift 21s ease-in-out infinite; animation-delay: -12.5s; }
+.neon-card-6 { border: 3.5px solid #ff6600; box-shadow: 0 0 18px rgba(255, 102, 0, 0.75), 0 0 35px rgba(255, 102, 0, 0.35); animation: intenseNeonShift 17s ease-in-out infinite; animation-delay: -15s; }
+.neon-card-7 { border: 3.5px solid #00bfff; box-shadow: 0 0 18px rgba(0, 191, 255, 0.75), 0 0 35px rgba(0, 191, 255, 0.35); animation: intenseNeonShift 23s ease-in-out infinite; animation-delay: -17.5s; }
+.neon-card-8 { border: 3.5px solid #ff1493; box-shadow: 0 0 18px rgba(255, 20, 147, 0.75), 0 0 35px rgba(255, 20, 147, 0.35); animation: intenseNeonShift 15s ease-in-out infinite; animation-delay: -1.2s; }
+.neon-card-9 { border: 3.5px solid #7fff00; box-shadow: 0 0 18px rgba(127, 255, 0, 0.75), 0 0 35px rgba(127, 255, 0, 0.35); animation: intenseNeonShift 25s ease-in-out infinite; animation-delay: -6.2s; }
+.neon-card-10 { border: 3.5px solid #00ffff; box-shadow: 0 0 18px rgba(0, 255, 255, 0.75), 0 0 35px rgba(0, 255, 255, 0.35); animation: intenseNeonShift 24s ease-in-out infinite; animation-delay: -11.2s; }
+.neon-card-11 { border: 3.5px solid #ff3300; box-shadow: 0 0 18px rgba(255, 51, 0, 0.75), 0 0 35px rgba(255, 51, 0, 0.35); animation: intenseNeonShift 18s ease-in-out infinite; animation-delay: -14.2s; }
+
+/* STORY HALKALARI IŞILTI */
+.story-ring-0 { border: 2.5px solid #ff0055; box-shadow: 0 0 12px rgba(255, 0, 85, 0.7); animation: intenseNeonShift 14s ease-in-out infinite; animation-delay: 0s; }
+.story-ring-1 { border: 2.5px solid #00f0ff; box-shadow: 0 0 12px rgba(0, 240, 255, 0.7); animation: intenseNeonShift 16s ease-in-out infinite; animation-delay: -3.5s; }
+.story-ring-2 { border: 2.5px solid #ffd700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.7); animation: intenseNeonShift 18s ease-in-out infinite; animation-delay: -7s; }
+.story-ring-3 { border: 2.5px solid #00ff66; box-shadow: 0 0 12px rgba(0, 255, 102, 0.7); animation: intenseNeonShift 20s ease-in-out infinite; animation-delay: -10.5s; }
+.story-ring-4 { border: 2.5px solid #9900ff; box-shadow: 0 0 12px rgba(153, 0, 255, 0.7); animation: intenseNeonShift 15s ease-in-out infinite; animation-delay: -14s; }
+.story-ring-5 { border: 2.5px solid #ff6600; box-shadow: 0 0 12px rgba(255, 102, 0, 0.7); animation: intenseNeonShift 19s ease-in-out infinite; animation-delay: -2s; }
+.story-ring-6 { border: 2.5px solid #ff00cc; box-shadow: 0 0 12px rgba(255, 0, 204, 0.7); animation: intenseNeonShift 21s ease-in-out infinite; animation-delay: -8s; }
+.story-ring-7 { border: 2.5px solid #00bfff; box-shadow: 0 0 12px rgba(0, 191, 255, 0.7); animation: intenseNeonShift 17s ease-in-out infinite; animation-delay: -12s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-card-0, .neon-card-1, .neon-card-2, .neon-card-3, .neon-card-4, .neon-card-5,
+  .neon-card-6, .neon-card-7, .neon-card-8, .neon-card-9, .neon-card-10, .neon-card-11,
+  .story-ring-0, .story-ring-1, .story-ring-2, .story-ring-3, .story-ring-4, .story-ring-5, .story-ring-6, .story-ring-7 {
+    animation: none !important;
+  }
+}
