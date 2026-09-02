@@ -16,7 +16,7 @@
 </head>
 <body class="min-h-screen flex text-xs select-none">
 
-  <!-- ŞİFRELİ GİRİŞ EKRANI (BOMBOŞ AÇILIR) -->
+  <!-- ŞİFRELİ GİRİŞ EKRANI -->
   <div id="loginOverlay" class="fixed inset-0 z-[999999] bg-[#06080d] flex items-center justify-center p-4">
     <div class="bg-[#0e121b] border border-amber-500/30 p-8 rounded-2xl max-w-md w-full shadow-2xl space-y-6">
       <div class="text-center space-y-2">
@@ -61,8 +61,6 @@
     </div>
 
     <nav class="p-3 space-y-4 flex-1 text-xs font-medium">
-      
-      <!-- 1. GENEL BAKIŞ -->
       <div class="space-y-1">
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">GENEL BAKIŞ</span>
         <button onclick="switchTab('dashboard')" id="tab-dashboard" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors sidebar-active"><i class="fa-solid fa-table-cells-large w-4 text-center"></i> <span>Dashboard</span></button>
@@ -73,11 +71,9 @@
         <button onclick="switchTab('rapor')" id="tab-rapor" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-regular fa-comment-dots w-4 text-center"></i> <span>Ziyaretçi & Mesaj Raporu</span></button>
       </div>
 
-      <!-- 2. ÜYELİK & VİTRİN -->
       <div class="space-y-1">
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">ÜYELİK & VİTRİN</span>
         <button onclick="switchTab('dashboard')" id="tab-profiller" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-users w-4 text-center"></i> <span>Profiller & Vitrin</span></button>
-        <button onclick="switchTab('dashboard')" id="tab-uyeler-yoneticiler" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-user-gear w-4 text-center"></i> <span>Üyeler & Yöneticiler</span></button>
         <button onclick="switchTab('slot')" id="tab-slot" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-table-cells w-4 text-center"></i> <span>Vitrin Slotları</span></button>
         <button onclick="switchTab('sureler')" id="tab-sureler" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-regular fa-clock w-4 text-center"></i> <span>Üye Süreleri</span></button>
         <button onclick="switchTab('fotograflar')" id="tab-fotograflar" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-regular fa-image w-4 text-center"></i> <span>Fotoğraflar & Galeri</span></button>
@@ -87,7 +83,6 @@
         <button onclick="switchTab('odemeler')" id="tab-odemeler" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-regular fa-credit-card w-4 text-center"></i> <span>Ödemeler & Abonelikler</span></button>
       </div>
 
-      <!-- 3. İÇERİK -->
       <div class="space-y-1">
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">İÇERİK</span>
         <button onclick="switchTab('basvurular')" id="tab-basvurular" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-regular fa-file-lines w-4 text-center"></i> <span>Başvurular & İlanlar</span></button>
@@ -96,7 +91,6 @@
         <button onclick="switchTab('hizmetler-tab')" id="tab-hizmetler-tab" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-wand-magic-sparkles w-4 text-center"></i> <span>Hizmetler</span></button>
       </div>
 
-      <!-- 4. SİSTEM & SEO -->
       <div class="space-y-1">
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">SİSTEM & SEO</span>
         <button onclick="switchTab('sikayet')" id="tab-sikayet" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-triangle-exclamation w-4 text-center"></i> <span>Şikayet & Raporlar</span></button>
@@ -130,7 +124,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-[#0e121b] border border-slate-800 p-6 rounded-2xl shadow-xl gap-4">
           <div>
             <h2 class="text-lg font-bold text-amber-400">VIP Üye ve Vitrin Yönetimi</h2>
-            <p class="text-xs text-slate-400 mt-1">Eklenen tüm üyeler otomatik hafızaya alınır ve anında tüm cihazlarda canlı yayına girer.</p>
+            <p class="text-xs text-slate-400 mt-1">Eklenen üyeler anında hem mobilde hem masaüstünde 1. sıraya kalıcı olarak işlenir.</p>
           </div>
           <button onclick="openNewProfileModal()" class="px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 text-black font-black text-xs rounded-xl shadow-lg flex items-center gap-2 cursor-pointer whitespace-nowrap">
             <span class="text-base">✨</span> + YENİ VIP ÜYE EKLE
@@ -169,9 +163,9 @@
         </div>
       </div>
 
-      <!-- ================= 2. CANLI VİTRİN ANALİZİ ================= -->
+      <!-- ================= DİĞER TÜM SEKMELER ================= -->
       <div id="view-vitrin-analizi" class="tab-view hidden space-y-6">
-        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-chart-column text-amber-400"></i> Canlı Vitrin Analizi & Şehir Dağılımı</h2>
+        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-chart-column text-amber-400"></i> Canlı Vitrin Analizi</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div class="bg-[#10141e] border border-slate-800 p-5 rounded-2xl"><span class="text-amber-400 font-bold">İzmir Vitrini</span><h3 class="text-2xl font-black text-white mt-1">12 Üye Aktif</h3><p class="text-slate-400 text-[10px] mt-1">Alsancak, Konak, Karşıyaka</p></div>
           <div class="bg-[#10141e] border border-slate-800 p-5 rounded-2xl"><span class="text-cyan-400 font-bold">İstanbul Vitrini</span><h3 class="text-2xl font-black text-white mt-1">8 Üye Aktif</h3><p class="text-slate-400 text-[10px] mt-1">Şişli, Kadıköy, Beşiktaş</p></div>
@@ -179,9 +173,8 @@
         </div>
       </div>
 
-      <!-- ================= 3. ANLIK DÖNÜŞÜM FUNNEL ================= -->
       <div id="view-anlik-funnel" class="tab-view hidden space-y-6">
-        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-chart-line text-cyan-400"></i> Anlık Dönüşüm Funnel (Huni Raporu)</h2>
+        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-chart-line text-cyan-400"></i> Anlık Dönüşüm Funnel</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <div class="bg-[#0f131d] border border-slate-800 p-4 rounded-xl"><span class="text-slate-400">1. Sayfa Açılış</span><h3 class="text-2xl font-bold text-white mt-1">9.135</h3></div>
           <div class="bg-[#0f131d] border border-slate-800 p-4 rounded-xl"><span class="text-cyan-400">2. Profil Detay</span><h3 class="text-2xl font-bold text-cyan-400 mt-1">3.382</h3></div>
@@ -190,12 +183,11 @@
         </div>
       </div>
 
-      <!-- ================= 4. CANLI TRAFİK ================= -->
       <div id="view-trafik" class="tab-view hidden space-y-6">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-wave-square text-emerald-400"></i> Canlı Trafik & Analitik</h2>
         <div class="bg-[#0f131d] border border-slate-800 rounded-2xl p-5 space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-bold text-white text-xs">Canlı Ziyaretçi Tıklama Akışı (Gerçek Zamanlı Log)</h3>
+            <h3 class="font-bold text-white text-xs">Canlı Ziyaretçi Tıklama Akışı</h3>
             <button onclick="renderAnalyticsView()" class="px-3 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-[11px] font-bold">🔄 Yenile</button>
           </div>
           <table class="w-full text-left text-xs">
@@ -213,7 +205,6 @@
         </div>
       </div>
 
-      <!-- ================= 5. KELİME TAKİBİ ================= -->
       <div id="view-kelime" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-amber-400"></i> Kelime Takibi (1577 Kelime)</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -224,7 +215,6 @@
         </div>
       </div>
 
-      <!-- ================= 6. ZİYARETÇİ RAPORU ================= -->
       <div id="view-rapor" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-regular fa-comment-dots text-purple-400"></i> Ziyaretçi & WhatsApp Raporu</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -234,19 +224,17 @@
         </div>
       </div>
 
-      <!-- ================= 7. VİTRİN SLOTLARI ================= -->
       <div id="view-slot" class="tab-view hidden space-y-5">
         <h2 class="text-base font-bold text-amber-300 flex items-center gap-2"><i class="fa-solid fa-table-cells text-amber-400"></i> Vitrin Slot Satış Yönetimi</h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="bg-[#10141e] border border-amber-500/40 p-5 rounded-xl"><h3 class="font-bold text-amber-400">1. Sıra (Diamond VIP)</h3><p class="text-xl font-bold text-white mt-2">5.000 TL / Ay</p><p class="text-slate-400 text-[10px] mt-1">Şehir ana sayfasında en üstte sabitlenir.</p></div>
-          <div class="bg-[#10141e] border border-yellow-500/30 p-5 rounded-xl"><h3 class="font-bold text-yellow-400">2. Sıra (Gold Premium)</h3><p class="text-xl font-bold text-white mt-2">3.500 TL / Ay</p><p class="text-slate-400 text-[10px] mt-1">2. vitrin bandında yer alır.</p></div>
-          <div class="bg-[#10141e] border border-blue-500/30 p-5 rounded-xl"><h3 class="font-bold text-blue-400">3. Sıra (Gold VIP)</h3><p class="text-xl font-bold text-white mt-2">2.500 TL / Ay</p><p class="text-slate-400 text-[10px] mt-1">3. vitrin bandında listelenir.</p></div>
+          <div class="bg-[#10141e] border border-amber-500/40 p-5 rounded-xl"><h3 class="font-bold text-amber-400">1. Sıra (Diamond VIP)</h3><p class="text-xl font-bold text-white mt-2">5.000 TL / Ay</p></div>
+          <div class="bg-[#10141e] border border-yellow-500/30 p-5 rounded-xl"><h3 class="font-bold text-yellow-400">2. Sıra (Gold Premium)</h3><p class="text-xl font-bold text-white mt-2">3.500 TL / Ay</p></div>
+          <div class="bg-[#10141e] border border-blue-500/30 p-5 rounded-xl"><h3 class="font-bold text-blue-400">3. Sıra (Gold VIP)</h3><p class="text-xl font-bold text-white mt-2">2.500 TL / Ay</p></div>
         </div>
       </div>
 
-      <!-- ================= 8. ÜYE SÜRELERİ ================= -->
       <div id="view-sureler" class="tab-view hidden space-y-5">
-        <h2 class="text-base font-bold text-amber-300 flex items-center gap-2"><i class="fa-regular fa-clock text-amber-400"></i> Üye Süreleri — Toplu Güncelleme</h2>
+        <h2 class="text-base font-bold text-amber-300 flex items-center gap-2"><i class="fa-regular fa-clock text-amber-400"></i> Üye Süreleri</h2>
         <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl space-y-4">
           <p class="text-slate-300">Tüm Gold ve Silver üyelerin yayın bitiş sürelerini tek tıkla uzatabilirsiniz.</p>
           <div class="flex gap-3">
@@ -256,7 +244,6 @@
         </div>
       </div>
 
-      <!-- ================= 9. MEDYA (FOTOĞRAFLAR, VİDEOLAR, STORYLER) ================= -->
       <div id="view-fotograflar" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-regular fa-image text-cyan-400"></i> Fotoğraflar & Galeri Havuzu</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="galleryPool"></div>
@@ -268,25 +255,20 @@
       </div>
 
       <div id="view-storyler" class="tab-view hidden space-y-4">
-        <div class="flex items-center justify-between">
-          <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-fire text-amber-400"></i> Durumlar & 24 Saatlik Storyler</h2>
-          <button onclick="alert('Story oluşturma paneli açıldı!')" class="px-4 py-2 bg-gradient-to-r from-amber-500 to-rose-500 text-black font-black rounded-lg">+ Yeni Story Ekle</button>
-        </div>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Ana sayfa üst barında görünen 24 saatlik hikaye akışı yönetimi.</p></div>
+        <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-fire text-amber-400"></i> Durumlar & 24 Saatlik Storyler</h2>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Ana sayfa üst barında görünen 24 saatlik hikaye akışı.</p></div>
       </div>
 
-      <!-- ================= 10. PAKETLER & ÖDEMELER ================= -->
       <div id="view-paketler" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-crown text-yellow-400"></i> Yayın Paketleri ve Fiyatlandırma</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Diamond, Gold Premium, Gold VIP ve Silver paket özelliklerini buradan yönetebilirsiniz.</p></div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Diamond VIP, Gold Premium, Gold VIP ve Silver paket fiyat yönetimi.</p></div>
       </div>
 
       <div id="view-odemeler" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-regular fa-credit-card text-emerald-400"></i> Ödemeler & Dekont Onayları</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-emerald-400">✓ Bekleyen herhangi bir ödeme dekontu bulunmamaktadır. Tüm işlemler güncel.</p></div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-emerald-400">✓ Bekleyen herhangi bir ödeme dekontu bulunmamaktadır.</p></div>
       </div>
 
-      <!-- ================= 11. BAŞVURULAR, YORUMLAR, ŞEHİRLER, HİZMETLER ================= -->
       <div id="view-basvurular" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-regular fa-file-lines text-cyan-400"></i> Başvurular & İlanlar</h2>
         <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Siteden başvuru yapan yeni terapistlerin onay bekleyen formları.</p></div>
@@ -294,20 +276,19 @@
 
       <div id="view-yorumlar" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-regular fa-square-check text-emerald-400"></i> Yorumlar & Moderasyon Onayı</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Müşterilerin masözler hakkında yazdığı yorumlar kontrol edilip onaylanır.</p></div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Müşterilerin masözler hakkında yazdığı onay bekleyen yorumlar.</p></div>
       </div>
 
       <div id="view-sehirler" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-location-dot text-rose-400"></i> Şehirler (81 İl + KKTC)</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Tüm 81 il ve KKTC lokasyon sayfaları otomatik oluşturulup yayına alınmıştır.</p></div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">81 İl ve KKTC lokasyon sayfaları aktiftir.</p></div>
       </div>
 
       <div id="view-hizmetler-tab" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-wand-magic-sparkles text-cyan-400"></i> Hizmetler & Terapi Çeşitleri</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Tantra, Erotik, Relax, Nuru, Aromaterapi, Medikal ve Hamam terapileri aktif durumdadır.</p></div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Tantra, Erotik, Relax, Nuru, Aromaterapi, Medikal ve Hamam terapileri.</p></div>
       </div>
 
-      <!-- ================= 12. SİSTEM & SEO ================= -->
       <div id="view-sikayet" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Şikayet & Raporlar</h2>
         <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-emerald-400">✓ Açık herhangi bir şikayet kaydı bulunmamaktadır.</p></div>
@@ -320,9 +301,7 @@
 
       <div id="view-site-ayarlari" class="tab-view hidden space-y-4">
         <h2 class="text-base font-bold text-white flex items-center gap-2"><i class="fa-solid fa-gear text-slate-300"></i> Site Ayarları</h2>
-        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl space-y-4">
-          <p class="text-slate-300">Sitenizin tüm veri tabanı tarayıcıda otomatik hafızaya alınmaktadır. Herhangi bir manuel işleme gerek yoktur.</p>
-        </div>
+        <div class="bg-[#10141e] border border-slate-800 p-5 rounded-xl"><p class="text-slate-300">Tüm verileriniz otomatik ve kalıcı olarak korunmaktadır.</p></div>
       </div>
 
     </div>
@@ -332,7 +311,6 @@
   <div id="masterMemberModal" class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6">
     <div class="bg-[#090e18] border border-cyan-500/40 rounded-2xl max-w-4xl w-full max-h-[96vh] flex flex-col shadow-2xl overflow-hidden text-slate-200">
       
-      <!-- Başlık -->
       <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-[#060910]">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-lg font-bold">✨</div>
@@ -344,7 +322,6 @@
         <button onclick="closeMasterModal()" class="text-slate-400 hover:text-white text-xl p-1"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <!-- 8 Adım Sekmeleri -->
       <div class="flex items-center gap-1.5 p-3 bg-[#060910] border-b border-slate-800/80 overflow-x-auto text-[11px] font-semibold custom-scroll">
         <button type="button" onclick="goToStep(1)" id="step-btn-1" class="px-3.5 py-2 rounded-lg whitespace-nowrap step-active">1. Genel</button>
         <button type="button" onclick="goToStep(2)" id="step-btn-2" class="px-3.5 py-2 rounded-lg whitespace-nowrap text-slate-400 hover:text-white">2. Konum (İl/İlçe/Semt)</button>
@@ -356,7 +333,6 @@
         <button type="button" onclick="goToStep(8)" id="step-btn-8" class="px-3.5 py-2 rounded-lg whitespace-nowrap text-slate-400 hover:text-white">8. SEO & Arama Motoru</button>
       </div>
 
-      <!-- Form Alanı -->
       <div class="p-6 overflow-y-auto custom-scroll space-y-5 flex-1 text-xs">
         <input type="hidden" id="editProfileId">
         <input type="hidden" id="editCoverPhoto">
@@ -568,16 +544,16 @@
 
   <script>
     const STORAGE_KEY = 'tmv_database_profiles_store_permanent';
+    const BACKUP_KEY = 'tmv_profiles';
     let uploadedGalleryList = [];
 
-    // KALICI 24 VIP PROFİL HAVUZU
     const DEFAULT_PROFILES = [
-      { id: 'p1', name: 'Masöz Asya', title: 'VIP Bireysel Masöz & Spa Terapisti', category: 'masoz', categoryName: 'Bireysel Masöz', age: 24, height: 168, weight: 52, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Alsancak', packageType: 'DIAMOND', price: 3500, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'Relax Masaj', 'Nuru Masajı'], workingHours: '10:00 - 02:00', bio: 'Alsancak kendi lüks ve hijyenik yerimde VIP masaj hizmeti.', isAvailable: true, isVerified: true, isPublished: true },
-      { id: 'p2', name: 'Masöz Maya', title: 'Profesyonel Terapi Uzmanı', category: 'masoz', categoryName: 'Bireysel Masöz', age: 26, height: 172, weight: 56, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Kordon', packageType: 'DIAMOND', price: 4000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80', services: ['Erotik Masaj', 'Aromaterapi Masajı', 'Sıcak Taş Masajı'], workingHours: '12:00 - 03:00', bio: 'Kordon manzaralı özel dairemde huzurlu terapi.', isAvailable: true, isVerified: true, isPublished: true },
-      { id: 'p3', name: 'Masöz Melis', title: 'Lüks Relax Masajı', category: 'masoz', categoryName: 'Bireysel Masöz', age: 23, height: 165, weight: 50, city: 'İzmir', citySlug: 'izmir', district: 'Karşıyaka', neighborhood: 'Bostanlı', packageType: 'PREMIUM', price: 3000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80', services: ['Klasik İsveç Masajı', 'Relax Masaj'], workingHours: '11:00 - 01:00', bio: 'Bostanlı nezih ortamımda profesyonel relax masajı.', isAvailable: true, isVerified: true, isPublished: true },
-      { id: 'p4', name: 'Masöz Derin', title: 'Tantra & VIP Özel Masaj', category: 'masoz', categoryName: 'Bireysel Masöz', age: 25, height: 170, weight: 54, city: 'İstanbul', citySlug: 'istanbul', district: 'Şişli', neighborhood: 'Nişantaşı', packageType: 'DIAMOND', price: 5000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'VIP Özel Terapi', 'Jakuzi & Spa Keyfi'], workingHours: '10:00 - 04:00', bio: 'Nişantaşı rezidansta jakuzili VIP terapi.', isAvailable: true, isVerified: true, isPublished: true },
-      { id: 'p5', name: 'Masöz Ece', title: 'Medikal & Aromaterapi', category: 'masoz', categoryName: 'Bireysel Masöz', age: 27, height: 167, weight: 53, city: 'İstanbul', citySlug: 'istanbul', district: 'Kadıköy', neighborhood: 'Moda', packageType: 'PREMIUM', price: 3500, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80', services: ['Medikal Masaj', 'Aromaterapi Masajı'], workingHours: '10:00 - 23:00', bio: 'Moda sahilinde medikal rahatlama masajı.', isAvailable: true, isVerified: true, isPublished: true },
-      { id: 'p6', name: 'Masöz Lara', title: 'Antalya VIP Terapi', category: 'masoz', categoryName: 'Bireysel Masöz', age: 24, height: 171, weight: 55, city: 'Antalya', citySlug: 'antalya', district: 'Muratpaşa', neighborhood: 'Lara', packageType: 'DIAMOND', price: 4000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'Sıcak Yağ Masajı', 'Nuru Masajı'], workingHours: '12:00 - 02:00', bio: 'Lara bölgesinde klimalı lüks dairemde hizmet.', isAvailable: true, isVerified: true, isPublished: true }
+      { id: 'p1', name: 'Masöz Asya', title: 'VIP Bireysel Masöz & Spa Terapisti', category: 'masoz', categoryName: 'Bireysel Masöz', age: 24, height: 168, weight: 52, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Alsancak', packageType: 'DIAMOND', price: 3500, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'Relax Masaj', 'Nuru Masajı'], workingHours: '10:00 - 02:00', bio: 'Alsancak kendi lüks ve hijyenik yerimde VIP masaj hizmeti sunuyorum.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 1250 },
+      { id: 'p2', name: 'Masöz Maya', title: 'Profesyonel Terapi Uzmanı', category: 'masoz', categoryName: 'Bireysel Masöz', age: 26, height: 172, weight: 56, city: 'İzmir', citySlug: 'izmir', district: 'Konak', neighborhood: 'Kordon', packageType: 'DIAMOND', price: 4000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80', services: ['Erotik Masaj', 'Aromaterapi Masajı', 'Sıcak Taş Masajı'], workingHours: '12:00 - 03:00', bio: 'Kordon manzaralı özel dairemde huzurlu ve kaliteli terapi.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 980 },
+      { id: 'p3', name: 'Masöz Melis', title: 'Lüks Relax Masajı', category: 'masoz', categoryName: 'Bireysel Masöz', age: 23, height: 165, weight: 50, city: 'İzmir', citySlug: 'izmir', district: 'Karşıyaka', neighborhood: 'Bostanlı', packageType: 'PREMIUM', price: 3000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80', services: ['Klasik İsveç Masajı', 'Relax Masaj'], workingHours: '11:00 - 01:00', bio: 'Bostanlı nezih ortamımda profesyonel relax masajı.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 650 },
+      { id: 'p4', name: 'Masöz Derin', title: 'Tantra & VIP Özel Masaj', category: 'masoz', categoryName: 'Bireysel Masöz', age: 25, height: 170, weight: 54, city: 'İstanbul', citySlug: 'istanbul', district: 'Şişli', neighborhood: 'Nişantaşı', packageType: 'DIAMOND', price: 5000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'VIP Özel Terapi', 'Jakuzi & Spa Keyfi'], workingHours: '10:00 - 04:00', bio: 'Nişantaşı rezidansta jakuzili VIP terapi hizmeti.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 1420 },
+      { id: 'p5', name: 'Masöz Ece', title: 'Medikal & Aromaterapi', category: 'masoz', categoryName: 'Bireysel Masöz', age: 27, height: 167, weight: 53, city: 'İstanbul', citySlug: 'istanbul', district: 'Kadıköy', neighborhood: 'Moda', packageType: 'PREMIUM', price: 3500, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80', services: ['Medikal Masaj', 'Aromaterapi Masajı'], workingHours: '10:00 - 23:00', bio: 'Moda sahilinde medikal rahatlama masajı.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 780 },
+      { id: 'p6', name: 'Masöz Lara', title: 'Antalya VIP Terapi', category: 'masoz', categoryName: 'Bireysel Masöz', age: 24, height: 171, weight: 55, city: 'Antalya', citySlug: 'antalya', district: 'Muratpaşa', neighborhood: 'Lara', packageType: 'DIAMOND', price: 4000, phone: '05403225555', whatsapp: '05403225555', coverPhoto: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=80', services: ['Tantra Masajı', 'Sıcak Yağ Masajı', 'Nuru Masajı'], workingHours: '12:00 - 02:00', bio: 'Lara bölgesinde lüks dairemde hizmet sunuyorum.', isAvailable: true, isVerified: true, isPublished: true, viewCount: 1100 }
     ];
 
     const ALL_CITIES = [
@@ -873,10 +849,9 @@
       renderGalleryThumbs();
     }
 
-    // OTOMATİK KALICI HAFIZA MOTORU
     function getStore() {
       try {
-        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('tmv_profiles');
+        const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(BACKUP_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -889,7 +864,9 @@
     function saveStore(data) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        localStorage.setItem('tmv_profiles', JSON.stringify(data));
+        localStorage.setItem(BACKUP_KEY, JSON.stringify(data));
+        localStorage.setItem('tmv_custom_profiles_saved', 'true');
+        window.dispatchEvent(new Event('tmv_storage_updated'));
       } catch (e) {}
     }
 
