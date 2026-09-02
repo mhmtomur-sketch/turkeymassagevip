@@ -1,73 +1,98 @@
-﻿import React from 'react';
-import { Routes, Route, useLocation, Link } from 'react-router-dom';
+﻿import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Header } from './components/layout/Header';
+import { Footer } from './components/layout/Footer';
 import { HomePage } from './pages/HomePage';
 import { ProfileDetailPage } from './pages/ProfileDetailPage';
-import { CityLandingPage } from './pages/CityLandingPage';
 import { AdminPage } from './pages/AdminPage';
-import Header from './components/layout/Header';
-import { Footer } from './components/layout/Footer';
-import { SeoHead } from './components/seo/SeoHead';
+import { CityLandingPage } from './pages/CityLandingPage';
 
 export function App() {
   const location = useLocation();
-  const isAdmin = location.pathname.startsWith('/admin');
+  const [isAdminState, setIsAdminState] = useState(() => {
+    return window.location.href.toLowerCase().includes('admin');
+  });
 
-  return (
-    <div className="min-h-screen bg-slate-950 text-white flex flex-col selection:bg-cyan-500 selection:text-slate-950">
-      <SeoHead
-        title="Türkiye Masaj, Masöz, Masör, Spa ve Hamam Rehberi"
-        description="Türkiye genelinde profesyonel masaj, bireysel masöz, masör, lüks spa salonu, geleneksel Türk hamamı, kese köpük ve otel spa vitrinlerini şehir ve ilçeye göre keşfedin."
-        canonicalUrl="https://turkeymassagevip.com/"
-      />
+  useEffect(() => {
+    if (window.location.href.toLowerCase().includes('admin')) {
+      setIsAdminState(true);
+    }
+  }, [location]);
 
-      {/* Sadece Normal Sitede Göster, Admin Panelinde Gizle */}
-      {!isAdmin && <Header />}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
-            {/* CANLI VE HER ZAMAN GÖRÜNEN SABİT YÖNETİCİ PANELİ BUTONU */}
-      {!isAdmin && (
-        <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 999999 }}>
-          <Link
-            to="/admin"
+  // ADRES VEYA BUTON İLE ADMIN TETİKLENDİĞİNDE DOĞRUDAN PANELE GEÇ
+  if (isAdminState || location.pathname.startsWith('/admin')) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-white relative">
+        <div style={{ position: 'fixed', top: '16px', right: '16px', zIndex: 999999 }}>
+          <button
+            onClick={() => {
+              setIsAdminState(false);
+              window.history.pushState(null, '', '/');
+            }}
             style={{
-              backgroundColor: '#D4AF37',
-              color: '#000000',
-              fontWeight: '900',
-              fontSize: '15px',
-              padding: '14px 24px',
-              borderRadius: '50px',
-              boxShadow: '0 6px 25px rgba(212, 175, 55, 0.7)',
-              border: '2px solid #ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              textDecoration: 'none',
-              cursor: 'pointer'
+              backgroundColor: '#dc2626',
+              color: '#ffffff',
+              fontWeight: 'bold',
+              padding: '10px 18px',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              border: 'none',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.5)'
             }}
           >
-            👑 VIP Yönetici Girişi
-          </Link>
+            ← Ana Sayfaya Dön
+          </button>
         </div>
-      )}
+        <AdminPage />
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white flex flex-col font-sans selection:bg-amber-500 selection:text-black">
+      {/* SAĞ ALT KÖŞEDE HER ZAMAN GÖRÜNEN YÖNETİCİ GİRİŞİ BUTONU */}
+      <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 999999 }}>
+        <button
+          onClick={() => setIsAdminState(true)}
+          style={{
+            backgroundColor: '#D4AF37',
+            color: '#000000',
+            fontWeight: '900',
+            fontSize: '15px',
+            padding: '14px 24px',
+            borderRadius: '50px',
+            boxShadow: '0 6px 25px rgba(212, 175, 55, 0.7)',
+            border: '2px solid #ffffff',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            cursor: 'pointer'
+          }}
+        >
+          👑 VIP Yönetici Girişi
+        </button>
+      </div>
+
+      <Header />
+
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profil/:slug" element={<ProfileDetailPage />} />
-          <Route path="/admin/*" element={<AdminPage />} />
-
-          {/* Kategori Landing Sayfaları */}
           <Route path="/kategori/:categorySlug" element={<CityLandingPage />} />
-
-          {/* 81 İl, İlçe ve Alt Kategori SEO Landing Rotaları */}
           <Route path="/:citySlug" element={<CityLandingPage />} />
           <Route path="/:citySlug/:districtOrCategory" element={<CityLandingPage />} />
           <Route path="/:citySlug/:districtOrCategory/:categorySlug" element={<CityLandingPage />} />
         </Routes>
       </main>
 
-      {/* Sadece Normal Sitede Göster, Admin Panelinde Gizle */}
-      {!isAdmin && <Footer />}
+      <Footer />
     </div>
   );
 }
-export default App;
 
+export default App;
