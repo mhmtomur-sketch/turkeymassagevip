@@ -125,6 +125,13 @@ export default function Header(props?: HeaderProps) {
             >
               🏠 Ana Sayfa
             </Link>
+            <Link
+              to="/admin"
+              className="px-3 py-1 bg-amber-500 hover:bg-amber-400 text-black rounded-lg text-xs font-black whitespace-nowrap transition-colors flex items-center gap-1 shadow-lg border border-white"
+            >
+              <span>👑</span>
+              <span>Yönetici Paneli</span>
+            </Link>
             {CATEGORY_LINKS.map((cat) => {
               const active = location.pathname === `/kategori/${cat.slug}`;
               return (
@@ -155,4 +162,5 @@ export default function Header(props?: HeaderProps) {
 
 
 export { Header };
+
 
