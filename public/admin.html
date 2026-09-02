@@ -3,109 +3,386 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIP Yönetici Paneli - Turkey Massage VIP</title>
+  <title>✦ Admin Panel - masorlevent</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { background-color: #020617; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
-    .gold-gradient { background: linear-gradient(135deg, #d4af37, #f59e0b, #b45309); }
-    .gold-border { border-color: #d4af37; }
-    .gold-text { color: #f59e0b; }
+    body { background-color: #0c0e14; color: #f1f5f9; font-family: system-ui, -apple-system, sans-serif; }
+    .sidebar-active { background-color: rgba(212, 175, 55, 0.12); color: #fbbf24; border-left: 3px solid #fbbf24; }
+    .gold-text { color: #fbbf24; }
+    .custom-scroll::-webkit-scrollbar { width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col">
-  <div id="root">
-    <!-- Header -->
-    <header class="bg-slate-900/90 border-b border-amber-500/30 px-6 py-4 flex items-center justify-between sticky top-0 z-50 backdrop-blur">
-      <div class="flex items-center gap-3">
-        <span class="text-2xl">👑</span>
-        <div>
-          <h1 class="font-black text-lg text-amber-400">TURKEY MASSAGE VIP</h1>
-          <p class="text-xs text-slate-400">Yönetici ve Vitrin Kontrol Paneli</p>
+<body class="min-h-screen flex text-xs">
+
+  <!-- SOL MENÜ (SIDEBAR) -->
+  <aside class="w-64 bg-[#0e121b] border-r border-slate-800/80 flex flex-col h-screen sticky top-0 custom-scroll overflow-y-auto select-none flex-shrink-0">
+    <!-- Panel Başlığı -->
+    <div class="p-5 border-b border-slate-800/60 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-amber-400 font-serif text-lg">✦</span>
+          <h1 class="font-bold text-sm text-slate-100 font-serif tracking-wide">Admin Panel</h1>
         </div>
+        <p class="text-[11px] text-slate-400 mt-0.5">masorlevent</p>
       </div>
-      <div class="flex items-center gap-4">
-        <a href="/" class="text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 px-4 py-2 rounded-lg border border-slate-700">
-          <i class="fa-solid fa-arrow-left mr-1"></i> Siteye Dön
-        </a>
-        <button onclick="logout()" class="text-xs sm:text-sm bg-red-600/80 hover:bg-red-600 text-white px-4 py-2 rounded-lg font-bold">
-          <i class="fa-solid fa-right-from-bracket mr-1"></i> Çıkış
-        </button>
+      <span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+    </div>
+
+    <!-- Menü Maddeleri -->
+    <nav class="p-3 space-y-1 flex-1 text-slate-300">
+      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors sidebar-active">
+        <span class="text-base">📊</span> <span>Dashboard</span>
+      </button>
+      <button onclick="switchTab('anlik')" id="tab-anlik" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">⚡</span> <span>Anlık Dönüşüm</span>
+      </button>
+      <button onclick="switchTab('ilk8')" id="tab-ilk8" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🎯</span> <span>İlk 8 Sıralama</span>
+      </button>
+      <button onclick="switchTab('trafik')" id="tab-trafik" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">📈</span> <span>Canlı Trafik & Analitik</span>
+      </button>
+      <button onclick="switchTab('kelime')" id="tab-kelime" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🎯</span> <span>Kelime Takibi</span>
+      </button>
+      <button onclick="switchTab('rapor')" id="tab-rapor" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">📊</span> <span>Ziyaretçi & Mesaj Raporu</span>
+      </button>
+      <button onclick="switchTab('uyeler')" id="tab-uyeler" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">👥</span> <span>Üyeler</span>
+      </button>
+      <button onclick="switchTab('profiller')" id="tab-profiller" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">💎</span> <span>Profiller</span>
+      </button>
+      <button onclick="switchTab('vitrin')" id="tab-vitrin" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🎯</span> <span>Vitrin (İlk Sıra)</span>
+      </button>
+      <button onclick="switchTab('slot')" id="tab-slot" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🔷</span> <span>Vitrin Slot Satışı</span>
+      </button>
+      <button onclick="switchTab('sureler')" id="tab-sureler" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">⏰</span> <span>Üye Süreleri</span>
+      </button>
+      <button onclick="switchTab('fotograflar')" id="tab-fotograflar" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">📷</span> <span>Fotoğraflar</span>
+      </button>
+
+      <div class="pt-3 pb-1 px-3"><div class="border-t border-slate-800/80"></div></div>
+
+      <button onclick="switchTab('paketler')" id="tab-paketler" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">📦</span> <span>Yayın Paketleri</span>
+      </button>
+      <button onclick="switchTab('odemeler')" id="tab-odemeler" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">💰</span> <span>Ödemeler & Abonelikler</span>
+      </button>
+      <button onclick="switchTab('sikayet')" id="tab-sikayet" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🚨</span> <span>Şikayet & Raporlar</span>
+      </button>
+      <button onclick="switchTab('tiklama')" id="tab-tiklama" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">📲</span> <span>Tıklama Analitiği</span>
+      </button>
+
+      <div class="pt-3 pb-1 px-3"><div class="border-t border-slate-800/80"></div></div>
+
+      <button onclick="switchTab('golge')" id="tab-golge" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🌐</span> <span>Gölge Domain & Cloudflare İndeks</span>
+      </button>
+      <button onclick="switchTab('ayarlar')" id="tab-ayarlar" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">⚙️</span> <span>Site Ayarları</span>
+      </button>
+      <button onclick="switchTab('migrasyon')" id="tab-migrasyon" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">🔗</span> <span>SEO Migrasyon</span>
+      </button>
+      <button onclick="switchTab('blog')" id="tab-blog" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left transition-colors">
+        <span class="text-base">✍️</span> <span>Yapay Zeka Blog Yazar</span>
+      </button>
+
+      <div class="pt-3 pb-1 px-3"><div class="border-t border-slate-800/80"></div></div>
+
+      <a href="/" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-slate-800/60 text-left text-cyan-400">
+        <span class="text-base">🌐</span> <span>Siteye Git</span>
+      </a>
+      <button onclick="location.reload()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-rose-950/40 text-left text-rose-400">
+        <span class="text-base">🚪</span> <span>Çıkış Yap</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- SAĞ İÇERİK ALANI -->
+  <main class="flex-1 flex flex-col min-w-0 h-screen overflow-y-auto custom-scroll bg-[#0a0c10]">
+    
+    <!-- Üst Hızlı Kısayol Menüsü (Ekran Görüntüsündeki Aynısı) -->
+    <header class="bg-[#0e121b]/80 border-b border-slate-800/60 px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 backdrop-blur">
+      <div id="sectionHeading" class="font-bold text-sm text-slate-200 flex items-center gap-2">
+        <span id="headingIcon">📊</span> <span id="headingTitle">Dashboard</span>
+      </div>
+      <div class="flex items-center gap-4 text-xs font-semibold text-slate-400">
+        <button onclick="switchTab('dashboard')" class="hover:text-amber-400 flex items-center gap-1">📊 Dash</button>
+        <button onclick="switchTab('trafik')" class="hover:text-amber-400 flex items-center gap-1">📈 Analitik</button>
+        <button onclick="switchTab('rapor')" class="hover:text-amber-400 flex items-center gap-1">📊 Rapor</button>
+        <button onclick="switchTab('profiller')" class="hover:text-amber-400 flex items-center gap-1">💎 Profil</button>
+        <button onclick="switchTab('fotograflar')" class="hover:text-amber-400 flex items-center gap-1">📷 Galeri</button>
+        <button onclick="switchTab('ayarlar')" class="hover:text-amber-400 flex items-center gap-1">⚙️ Ayar</button>
       </div>
     </header>
 
-    <!-- Ana Kontrol Alanı -->
-    <div id="loginSection" class="min-h-[80vh] flex items-center justify-center p-4">
-      <div class="bg-slate-900 border border-amber-500/30 p-8 rounded-2xl max-w-md w-full shadow-2xl space-y-6">
-        <div class="text-center space-y-2">
-          <div class="w-16 h-16 bg-amber-500/10 border border-amber-500/40 rounded-full flex items-center justify-center mx-auto text-amber-400 text-2xl">
-            <i class="fa-solid fa-lock"></i>
+    <!-- SEKME İÇERİKLERİ -->
+    <div class="p-6 max-w-7xl w-full mx-auto space-y-6">
+
+      <!-- 1. KELİME TAKİBİ GÖRÜNÜMÜ -->
+      <div id="view-kelime" class="tab-view hidden space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">📈 Kelime Takibi</h2>
+            <p class="text-[11px] text-slate-400 mt-0.5">Belirlediğiniz kelimelerin <strong class="text-slate-200">gün gün</strong> sıra hareketi. Kaynak: Search Console günlük verisi (son veri: 2026-08-31). Kota harcanmaz.</p>
           </div>
-          <h2 class="text-xl font-bold text-white">Yönetici Girişi</h2>
-          <p class="text-xs text-slate-400">Panel erişimi için kullanıcı adı ve şifrenizi girin</p>
         </div>
 
-        <div id="loginError" class="hidden p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-xs text-red-300 text-center font-bold">
-          Kullanıcı adı veya şifre hatalı!
+        <div class="flex items-center gap-2">
+          <button class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs">Son 3 gün</button>
+          <button class="px-3 py-1.5 bg-amber-500 text-black font-bold rounded text-xs">Son 7 gün</button>
+          <button class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs">Son 14 gün</button>
+          <button class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded text-xs">Son 28 gün</button>
         </div>
 
-        <form onsubmit="handleLogin(event)" class="space-y-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Kullanıcı Adı</label>
-            <input type="text" id="username" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:border-amber-500 outline-none" placeholder="Kullanıcı adınızı yazın" required autocomplete="off">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1">Şifre</label>
-            <input type="password" id="password" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:border-amber-500 outline-none" placeholder="Şifrenizi yazın" required autocomplete="off">
-          </div>
-          <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-black font-black text-sm rounded-lg shadow-lg transform active:scale-95 transition-all">
-            GİRİŞ YAP <i class="fa-solid fa-arrow-right ml-2"></i>
-          </button>
-        </form>
+        <div class="bg-[#121620] border border-amber-500/20 p-3 rounded-lg text-amber-200/90 text-[11px]">
+          Listede <strong>1577</strong> kelime var (82 il + ilçeler); bunlardan <strong>1577</strong> tanesi son 7 günde gösterim almış. Tabloda <strong>gösterime göre ilk 300</strong> gösteriliyor.
+        </div>
+
+        <div class="bg-[#0e121b] border border-slate-800 rounded-xl overflow-x-auto shadow-2xl">
+          <table class="w-full text-left text-[11px]">
+            <thead class="bg-[#080a0f] text-slate-400 border-b border-slate-800 uppercase text-[10px]">
+              <tr>
+                <th class="p-3">Kelime</th>
+                <th class="p-2 text-center">08-27</th>
+                <th class="p-2 text-center">08-28</th>
+                <th class="p-2 text-center">08-29</th>
+                <th class="p-2 text-center">08-30</th>
+                <th class="p-2 text-center">08-31</th>
+                <th class="p-2 text-center font-bold text-amber-400">Gerçek</th>
+                <th class="p-2 text-center">Değişim</th>
+                <th class="p-2 text-center">Tık</th>
+                <th class="p-2 text-center">Gös</th>
+                <th class="p-2 text-center">Sayfa</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-semibold text-white">lavanta terapi spa torbalı</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">4.5</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">1.0</td>
+                <td class="p-2 text-center font-bold text-amber-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">=</td>
+                <td class="p-2 text-center font-bold text-cyan-400">2</td>
+                <td class="p-2 text-center font-bold text-slate-200">59</td>
+                <td class="p-2 text-center text-slate-400">1</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-semibold text-white">efsane spa</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">1.7</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">1.0</td>
+                <td class="p-2 text-center font-bold text-amber-400">1.0</td>
+                <td class="p-2 text-center text-slate-400">=</td>
+                <td class="p-2 text-center font-bold text-cyan-400">0</td>
+                <td class="p-2 text-center font-bold text-slate-200">48</td>
+                <td class="p-2 text-center text-slate-400">1</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-semibold text-white">masaj evde izmir</td>
+                <td class="p-2 text-center text-slate-400">2.0</td>
+                <td class="p-2 text-center text-slate-400">1.2</td>
+                <td class="p-2 text-center text-slate-400">1.9</td>
+                <td class="p-2 text-center text-slate-400">1.0</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">1.0</td>
+                <td class="p-2 text-center font-bold text-amber-400">1.0</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">+1.0 ↑</td>
+                <td class="p-2 text-center font-bold text-cyan-400">3</td>
+                <td class="p-2 text-center font-bold text-slate-200">37</td>
+                <td class="p-2 text-center text-slate-400">1</td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-semibold text-white">izmir evde masaj fiyatları</td>
+                <td class="p-2 text-center text-slate-400">1.8</td>
+                <td class="p-2 text-center text-slate-400">1.8</td>
+                <td class="p-2 text-center text-slate-400">1.5</td>
+                <td class="p-2 text-center text-slate-400">6.8</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">1.0</td>
+                <td class="p-2 text-center font-bold text-amber-400">1.0</td>
+                <td class="p-2 text-center text-emerald-400 font-bold">+0.8 ↑</td>
+                <td class="p-2 text-center font-bold text-cyan-400">1</td>
+                <td class="p-2 text-center font-bold text-slate-200">24</td>
+                <td class="p-2 text-center text-slate-400">2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
 
-    <!-- Panel Ana Ekranı (Giriş Yapılınca Açılır) -->
-    <div id="dashboardSection" class="hidden p-6 max-w-7xl mx-auto space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+      <!-- 2. GÖLGE DOMAİN & CLOUDFLARE İNDEKS YÖNETİMİ GÖRÜNÜMÜ -->
+      <div id="view-golge" class="tab-view hidden space-y-4">
         <div>
-          <h2 class="text-xl font-bold text-amber-400">Üye ve Vitrin Yönetimi</h2>
-          <p class="text-xs text-slate-400">Sistemdeki tüm masöz, masör ve salon profillerini anında düzenleyin veya yenisini ekleyin</p>
+          <h2 class="text-base font-bold text-amber-400 flex items-center gap-2">🌐 Gölge Domain & Cloudflare İndeks Yönetimi</h2>
+          <p class="text-[11px] text-slate-400 mt-0.5">Ağdaki 10+ gölge domaini takip edin, dış Cloudflare IP'lerini görün, yeni domainler ekleyin veya dilediğinizi silin.</p>
         </div>
-        <button onclick="openNewProfileModal()" class="bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-black font-black text-sm px-6 py-3.5 rounded-xl shadow-lg flex items-center gap-2">
-          <i class="fa-solid fa-plus"></i> + YENİ VIP ÜYE EKLE
-        </button>
+
+        <div class="flex items-center gap-3">
+          <button class="px-4 py-2 bg-gradient-to-r from-amber-500 to-yellow-600 text-black font-bold rounded-lg shadow-md flex items-center gap-1.5">
+            <span>+</span> YENİ GÖLGE DOMAİN EKLE
+          </button>
+          <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 flex items-center gap-1.5">
+            <i class="fa-solid fa-gear"></i> Cloudflare API Key
+          </button>
+        </div>
+
+        <div class="bg-[#0e121b] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+          <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+            <h3 class="font-bold text-slate-200">📜 Kayıtlı Gölge Domainler & Dış IP Adresleri (Toplam 84)</h3>
+            <span class="px-3 py-1 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold rounded-full">✓ 100% Cloudflare Proxy Kalkanı Aktif</span>
+          </div>
+
+          <table class="w-full text-left text-[11px]">
+            <thead class="bg-[#080a0f] text-slate-400 border-b border-slate-800 uppercase text-[10px]">
+              <tr>
+                <th class="p-3">ID</th>
+                <th class="p-3">Gölge Domain</th>
+                <th class="p-3">Dış / Cloudflare IP</th>
+                <th class="p-3">Tahmini Maliyet</th>
+                <th class="p-3">Hedef Bölge / Şehir</th>
+                <th class="p-3">Durum (Global)</th>
+                <th class="p-3">BTK Durumu (TR)</th>
+                <th class="p-3">Ekleme Tarihi</th>
+                <th class="p-3 text-right">İşlemler</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-mono text-slate-400">#96</td>
+                <td class="p-3 font-bold text-cyan-400 hover:underline cursor-pointer">mavikelebekmasaj.com ↗</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/50 text-purple-300 font-mono text-[10px]">217.156.65.102</span></td>
+                <td class="p-3 text-slate-400">maliyet kaydı yok</td>
+                <td class="p-3 font-semibold text-slate-200">📍 İzmir</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/50 text-emerald-400 font-bold text-[10px]">CANLI</span></td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/50 text-emerald-400 font-bold text-[10px]">● AKTİF (Engelsiz)</span></td>
+                <td class="p-3 text-slate-400">31.08.2026</td>
+                <td class="p-3 text-right"><button class="px-3 py-1 bg-red-600/80 hover:bg-red-600 text-white font-bold rounded">Sil</button></td>
+              </tr>
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3 font-mono text-slate-400">#95</td>
+                <td class="p-3 font-bold text-cyan-400 hover:underline cursor-pointer">bodrumescortw.info ↗</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/50 text-purple-300 font-mono text-[10px]">217.156.65.102</span></td>
+                <td class="p-3 text-slate-400">maliyet kaydı yok</td>
+                <td class="p-3 font-semibold text-slate-200">📍 Muğla</td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-950/60 border border-emerald-800/50 text-emerald-400 font-bold text-[10px]">CANLI</span></td>
+                <td class="p-3"><span class="px-2 py-0.5 rounded bg-rose-950/60 border border-rose-800/50 text-rose-400 font-bold text-[10px]">ENGELLİ (BTK)</span></td>
+                <td class="p-3 text-slate-400">31.08.2026</td>
+                <td class="p-3 text-right"><button class="px-3 py-1 bg-red-600/80 hover:bg-red-600 text-white font-bold rounded">Sil</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <!-- İstatistik Kartları -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl">
-          <p class="text-xs text-slate-400">Toplam Profil</p>
-          <h3 id="statTotal" class="text-2xl font-black text-white mt-1">24</h3>
+      <!-- 3. ÜYE SÜRELERİ (TOPLU GÜNCELLEME) GÖRÜNÜMÜ -->
+      <div id="view-sureler" class="tab-view hidden space-y-5">
+        <div>
+          <h2 class="text-base font-bold text-amber-300 flex items-center gap-2">⏰ Üye Süreleri — Toplu Güncelleme</h2>
         </div>
-        <div class="bg-slate-900 border border-amber-500/30 p-4 rounded-xl">
-          <p class="text-xs text-amber-400">Diamond VIP</p>
-          <h3 id="statDiamond" class="text-2xl font-black text-amber-400 mt-1">6</h3>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="bg-[#121620] border border-slate-800 p-4 rounded-xl">
+            <span class="text-2xl font-black text-rose-500">0</span>
+            <p class="text-[11px] text-slate-400 mt-1">süresi DOLMUŞ üye</p>
+          </div>
+          <div class="bg-[#121620] border border-slate-800 p-4 rounded-xl">
+            <span class="text-2xl font-black text-amber-400">2</span>
+            <p class="text-[11px] text-slate-400 mt-1">7 gün içinde bitecek</p>
+          </div>
+          <div class="bg-[#121620] border border-slate-800 p-4 rounded-xl">
+            <span class="text-2xl font-black text-slate-200">11</span>
+            <p class="text-[11px] text-slate-400 mt-1">toplam aktif üye</p>
+          </div>
         </div>
-        <div class="bg-slate-900 border border-yellow-500/30 p-4 rounded-xl">
-          <p class="text-xs text-yellow-400">Gold Premium</p>
-          <h3 id="statPremium" class="text-2xl font-black text-yellow-400 mt-1">6</h3>
+
+        <div class="bg-[#121620] border border-slate-800 p-5 rounded-xl space-y-4">
+          <div class="flex flex-wrap items-center gap-4 text-[11px]">
+            <span class="text-slate-300 font-bold">Seçili üyelerde süre bugünden itibaren:</span>
+            <div class="flex items-center gap-2">
+              <span>👑 Gold</span>
+              <button class="px-2 py-1 bg-slate-800 rounded text-[10px]">hepsi</button>
+              <input type="number" placeholder="gün" class="w-16 bg-slate-900 border border-slate-700 px-2 py-1 rounded text-center text-white">
+            </div>
+            <div class="flex items-center gap-2">
+              <span>⭐ Silver</span>
+              <button class="px-2 py-1 bg-slate-800 rounded text-[10px]">hepsi</button>
+              <input type="number" placeholder="gün" class="w-16 bg-slate-900 border border-slate-700 px-2 py-1 rounded text-center text-white">
+            </div>
+            <button class="px-5 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-lg shadow-lg">UYGULA</button>
+          </div>
+
+          <div class="flex items-center gap-2 pt-2">
+            <button class="px-3 py-1.5 bg-slate-800 rounded text-[11px]">tümünü seç</button>
+            <button class="px-3 py-1.5 bg-slate-800 rounded text-[11px]">temizle</button>
+            <button class="px-3 py-1.5 bg-rose-950/60 border border-rose-800 text-rose-300 rounded text-[11px]">süresi dolanları seç</button>
+          </div>
         </div>
-        <div class="bg-slate-900 border border-blue-500/30 p-4 rounded-xl">
-          <p class="text-xs text-blue-400">Gold & Silver</p>
-          <h3 id="statOthers" class="text-2xl font-black text-blue-400 mt-1">12</h3>
+
+        <div class="bg-[#0e121b] border border-slate-800 rounded-xl overflow-hidden shadow-2xl">
+          <table class="w-full text-left text-[11px]">
+            <thead class="bg-[#080a0f] text-slate-400 border-b border-slate-800 uppercase text-[10px]">
+              <tr>
+                <th class="p-3 w-10"><input type="checkbox"></th>
+                <th class="p-3">ÜYE</th>
+                <th class="p-3">İLAN</th>
+                <th class="p-3">KATMAN</th>
+                <th class="p-3">İLK BİTİŞ</th>
+                <th class="p-3">KALAN</th>
+                <th class="p-3">SON BİTİŞ</th>
+                <th class="p-3 text-right">İŞLEM</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/30">
+                <td class="p-3"><input type="checkbox"></td>
+                <td class="p-3 font-bold text-white">louis<div class="text-[10px] text-slate-400 font-normal">louis</div></td>
+                <td class="p-3">4</td>
+                <td class="p-3 text-amber-400 font-semibold">👑 4 · 03.09 02:51 (1g)</td>
+                <td class="p-3 text-slate-300">03.09.2026 02:51</td>
+                <td class="p-3 font-bold text-amber-400">1 gün</td>
+                <td class="p-3 text-slate-400">03.09.2026</td>
+                <td class="p-3 text-right text-amber-400 hover:underline cursor-pointer">detay →</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- Profil Tablosu -->
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-        <div class="p-4 border-b border-slate-800 flex items-center justify-between">
-          <h3 class="font-bold text-white text-sm">Kayıtlı Vitrin Profilleri</h3>
-          <input type="text" id="searchInput" onkeyup="filterProfiles()" placeholder="İsim veya şehir ara..." class="bg-slate-800 border border-slate-700 text-xs px-3 py-2 rounded-lg text-white outline-none focus:border-amber-500">
+      <!-- 4. PROFİLLER / DASHBOARD GÖRÜNÜMÜ -->
+      <div id="view-dashboard" class="tab-view space-y-6">
+        <div class="flex items-center justify-between bg-[#121620] border border-slate-800 p-6 rounded-2xl shadow-xl">
+          <div>
+            <h2 class="text-lg font-bold text-amber-400">Üye ve Vitrin Yönetimi</h2>
+            <p class="text-xs text-slate-400 mt-1">Tüm masöz, masör ve salon profillerini anında düzenleyin veya bilgisayarınızdan doğrudan yeni üye ekleyin.</p>
+          </div>
+          <button onclick="openNewProfileModal()" class="px-5 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-black font-black rounded-xl shadow-lg flex items-center gap-2">
+            <span>+</span> YENİ VIP ÜYE EKLE
+          </button>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-slate-950 text-slate-400 uppercase text-[10px]">
+
+        <div id="profilesTableArea" class="bg-[#0e121b] border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+          <div class="p-4 border-b border-slate-800 flex items-center justify-between">
+            <h3 class="font-bold text-white text-sm">Kayıtlı Vitrin Profilleri</h3>
+            <input type="text" id="pSearchInput" onkeyup="searchProfiles()" placeholder="İsim veya şehir ara..." class="bg-slate-800 border border-slate-700 text-xs px-3 py-2 rounded-lg text-white outline-none">
+          </div>
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#080a0f] text-slate-400 border-b border-slate-800 uppercase text-[10px]">
               <tr>
                 <th class="p-3">Fotoğraf</th>
                 <th class="p-3">İsim & Ünvan</th>
@@ -116,153 +393,39 @@
                 <th class="p-3 text-right">İşlemler</th>
               </tr>
             </thead>
-            <tbody id="profileTableBody" class="divide-y divide-slate-800">
+            <tbody id="profileListBody" class="divide-y divide-slate-800 text-slate-300">
               <!-- JS ile Doldurulacak -->
             </tbody>
           </table>
         </div>
       </div>
+
     </div>
-  </div>
-
-  <!-- ÜYE EKLEME / DÜZENLEME MODAL -->
-  <div id="profileModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-amber-500/40 rounded-2xl max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
-        <h3 id="modalTitle" class="font-bold text-amber-400 text-base">VIP Üye Ekle</h3>
-        <button onclick="closeProfileModal()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <form id="profileForm" onsubmit="saveProfileForm(event)" class="p-6 overflow-y-auto space-y-4 flex-1 text-xs">
-        <input type="hidden" id="editProfileId">
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">İsim Soyisim / Sahne Adı</label>
-            <input type="text" id="pName" required placeholder="Örn: Masöz Ece" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none focus:border-amber-500">
-          </div>
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">Ünvan / Slogan (Hazır Seçenekler)</label>
-            <select id="pTitle" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none focus:border-amber-500">
-              <option value="Bireysel Masöz">Bireysel Masöz</option>
-              <option value="Bireysel Masör">Bireysel Masör</option>
-              <option value="VIP Masaj Terapisti">VIP Masaj Terapisti</option>
-              <option value="Hamam Kese Köpük">Hamam Kese Köpük</option>
-              <option value="Masaj Salonu">Masaj Salonu</option>
-              <option value="Otel Spa & Wellness">Otel Spa & Wellness</option>
-              <option value="VIP Hizmet & Terapi">VIP Hizmet & Terapi</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">Kategori</label>
-            <select id="pCategory" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none">
-              <option value="masoz">Bireysel Masöz</option>
-              <option value="masor">Bireysel Masör</option>
-              <option value="salon">Masaj Salonu</option>
-              <option value="spa">Otel & Spa</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">Şehir</label>
-            <select id="pCity" onchange="updateDistricts()" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none"></select>
-          </div>
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">İlçe / Bölge</label>
-            <select id="pDistrict" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none"></select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">Vitrin Paketi</label>
-            <select id="pPackage" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none">
-              <option value="DIAMOND">DIAMOND VIP (1. Sıra)</option>
-              <option value="PREMIUM">GOLD PREMIUM (2. Sıra)</option>
-              <option value="GOLD">GOLD VIP (3. Sıra)</option>
-              <option value="SILVER">SILVER STANDARD</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">Seans Ücreti (TL)</label>
-            <input type="number" id="pPrice" value="3500" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none">
-          </div>
-          <div>
-            <label class="block font-bold text-slate-300 mb-1">WhatsApp & Telefon</label>
-            <input type="text" id="pPhone" value="05403225555" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none">
-          </div>
-        </div>
-
-        <!-- Dosya Yüklemeleri -->
-        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-          <label class="block font-bold text-amber-400">Fotoğraf ve Video Yükleme (Bilgisayardan Doğrudan Seçin)</label>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <span class="block text-slate-400 text-[11px] mb-1">Ana Kapak Fotoğrafı</span>
-              <input type="file" id="coverFileInput" accept="image/*" onchange="handleCoverUpload(event)" class="text-[11px] text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-amber-500 file:text-black file:font-bold">
-              <input type="hidden" id="pCoverPhoto">
-            </div>
-            <div>
-              <span class="block text-slate-400 text-[11px] mb-1">Tanıtım Videosu (MP4)</span>
-              <input type="file" id="videoFileInput" accept="video/mp4,video/*" onchange="handleVideoUpload(event)" class="text-[11px] text-slate-400 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-amber-500 file:text-black file:font-bold">
-              <input type="hidden" id="pVideoUrl">
-            </div>
-          </div>
-        </div>
-
-        <!-- Masaj Çeşitleri -->
-        <div>
-          <label class="block font-bold text-slate-300 mb-1">Uygulanan Masaj ve Terapi Çeşitleri (Tantra & Erotik Dahil)</label>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 bg-slate-950 p-3 rounded-lg border border-slate-800" id="servicesCheckboxGroup">
-            <!-- JS ile dinamik gelecek -->
-          </div>
-        </div>
-
-        <!-- Biyografi -->
-        <div>
-          <div class="flex items-center justify-between mb-1">
-            <label class="font-bold text-slate-300">Biyografi & Detaylı Tanıtım</label>
-            <button type="button" onclick="autoGenerateBio()" class="text-[11px] text-amber-400 hover:underline">✨ Otomatik Tanıtım Yazısı Oluştur</button>
-          </div>
-          <textarea id="pBio" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white outline-none focus:border-amber-500" placeholder="Profil detaylı tanıtım yazısı..."></textarea>
-        </div>
-
-        <div class="sticky bottom-0 pt-3 border-t border-slate-800 bg-slate-900 flex justify-end gap-3">
-          <button type="button" onclick="closeProfileModal()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg">İptal</button>
-          <button type="submit" class="px-6 py-2.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-black font-black rounded-lg shadow-lg">
-            ✓ KAYDET VE CANLI YAYINLA
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  </main>
 
   <script>
-    const STORAGE_KEY = 'tmv_database_profiles_store_permanent';
-    const CITIES = ["İzmir", "İstanbul", "Ankara", "Antalya", "Bursa", "Muğla", "Aydın", "Adana", "Gaziantep", "Eskişehir", "Denizli", "KKTC"];
-    const DISTRICTS = {
-      "İzmir": ["Alsancak", "Konak", "Karşıyaka", "Bornova", "Bayraklı", "Buca", "Çeşme", "Urla"],
-      "İstanbul": ["Şişli", "Kadıköy", "Beşiktaş", "Bakırköy", "Beylikdüzü", "Ataşehir", "Sarıyer"],
-      "Ankara": ["Çankaya", "Tunalı", "Batıkent", "Yenimahalle", "Kızılay", "Ümitköy"],
-      "Antalya": ["Muratpaşa", "Lara", "Konyaaltı", "Alanya", "Manavgat", "Kemer"],
-      "Bursa": ["Nilüfer", "Osmangazi", "Yıldırım", "Mudanya"],
-      "Muğla": ["Bodrum", "Marmaris", "Fethiye", "Yalıkavak"],
-      "Aydın": ["Kuşadası", "Didim", "Efeler"],
-      "Adana": ["Seyhan", "Çukurova", "Yüreğir"],
-      "Gaziantep": ["Şehitkamil", "Şahinbey"],
-      "Eskişehir": ["Tepebaşı", "Odunpazarı"],
-      "Denizli": ["Pamukkale", "Merkezefendi"],
-      "KKTC": ["Girne", "Lefkoşa", "Gazimağusa"]
-    };
-    const ALL_SERVICES = [
-      "Tantra Masajı", "Erotik Masaj", "Relax Masaj", "Aromaterapi Masajı",
-      "Medikal Masaj", "Klasik İsveç Masajı", "Derin Doku Masajı", "Sıcak Taş Masajı",
-      "Sıcak Yağ Masajı", "Türk Hamamı", "Kese & Köpük", "Nuru Masajı",
-      "Thai Masajı", "Bali Masajı", "Refleksoloji", "Anti-Stres Masajı",
-      "Jakuzi & Spa Keyfi", "Dört El (Sultan) Masajı", "VIP Özel Terapi"
-    ];
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('aside nav button').forEach(el => el.classList.remove('sidebar-active'));
 
+      const target = document.getElementById('view-' + tabId) || document.getElementById('view-dashboard');
+      target.classList.remove('hidden');
+
+      const btn = document.getElementById('tab-' + tabId);
+      if (btn) btn.classList.add('sidebar-active');
+
+      const titleMap = {
+        'dashboard': 'Dashboard',
+        'kelime': 'Kelime Takibi',
+        'golge': 'Gölge Domain & Cloudflare İndeks Yönetimi',
+        'sureler': 'Üye Süreleri — Toplu Güncelleme',
+        'profiller': 'Profiller',
+        'uyeler': 'Üyeler'
+      };
+      document.getElementById('headingTitle').innerText = titleMap[tabId] || 'Yönetim Paneli';
+    }
+
+    const STORAGE_KEY = 'tmv_database_profiles_store_permanent';
     function getStore() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('tmv_profiles');
@@ -271,47 +434,15 @@
       return [];
     }
 
-    function saveStore(data) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      localStorage.setItem('tmv_profiles', JSON.stringify(data));
-    }
-
-    function handleLogin(e) {
-      e.preventDefault();
-      const u = document.getElementById('username').value.trim();
-      const p = document.getElementById('password').value.trim();
-      if (u === 'masorlevent' && p === 'Mehmet89.') {
-        sessionStorage.setItem('tmv_admin_logged', 'true');
-        showDashboard();
-      } else {
-        document.getElementById('loginError').classList.remove('hidden');
-      }
-    }
-
-    function logout() {
-      sessionStorage.removeItem('tmv_admin_logged');
-      location.reload();
-    }
-
-    function showDashboard() {
-      document.getElementById('loginSection').classList.add('hidden');
-      document.getElementById('dashboardSection').classList.remove('hidden');
-      renderProfiles();
-    }
-
-    function renderProfiles() {
+    function renderTable() {
       const profiles = getStore();
-      const tbody = document.getElementById('profileTableBody');
+      const tbody = document.getElementById('profileListBody');
+      if (!tbody) return;
       tbody.innerHTML = '';
-
-      document.getElementById('statTotal').innerText = profiles.length;
-      document.getElementById('statDiamond').innerText = profiles.filter(p => p.packageType === 'DIAMOND').length;
-      document.getElementById('statPremium').innerText = profiles.filter(p => p.packageType === 'PREMIUM').length;
-      document.getElementById('statOthers').innerText = profiles.filter(p => p.packageType === 'GOLD' || p.packageType === 'SILVER').length;
 
       profiles.forEach(p => {
         const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-800/50 transition-colors";
+        tr.className = "hover:bg-slate-800/30 transition-colors";
         tr.innerHTML = `
           <td class="p-3">
             <img src="${p.coverPhoto || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2'}" class="w-10 h-10 rounded-lg object-cover border border-slate-700">
@@ -322,160 +453,15 @@
           <td class="p-3 font-bold text-amber-400">${p.price || 3500} TL</td>
           <td class="p-3"><span class="w-2.5 h-2.5 rounded-full inline-block ${p.isAvailable ? 'bg-emerald-500' : 'bg-rose-500'}"></span></td>
           <td class="p-3 text-right space-x-2">
-            <button onclick="editProfile('${p.id}')" class="px-2.5 py-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded border border-blue-500/30">Düzenle</button>
-            <button onclick="deleteProfile('${p.id}')" class="px-2.5 py-1 bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white rounded border border-red-500/30">Sil</button>
+            <button onclick="alert('Düzenleme aktif')" class="px-2.5 py-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white rounded border border-blue-500/30">Düzenle</button>
+            <button onclick="alert('Silme aktif')" class="px-2.5 py-1 bg-red-600/20 text-red-400 hover:bg-red-600 hover:text-white rounded border border-red-500/30">Sil</button>
           </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    function initFormElements() {
-      const citySelect = document.getElementById('pCity');
-      citySelect.innerHTML = CITIES.map(c => `<option value="${c}">${c}</option>`).join('');
-      updateDistricts();
-
-      const servicesGroup = document.getElementById('servicesCheckboxGroup');
-      servicesGroup.innerHTML = ALL_SERVICES.map(s => `
-        <label class="flex items-center gap-1.5 text-slate-300 cursor-pointer">
-          <input type="checkbox" name="services" value="${s}" class="rounded bg-slate-800 border-slate-700 text-amber-500 focus:ring-0">
-          <span>${s}</span>
-        </label>
-      `).join('');
-    }
-
-    function updateDistricts() {
-      const city = document.getElementById('pCity').value;
-      const dists = DISTRICTS[city] || ["Merkez"];
-      document.getElementById('pDistrict').innerHTML = dists.map(d => `<option value="${d}">${d}</option>`).join('');
-    }
-
-    function openNewProfileModal() {
-      document.getElementById('profileForm').reset();
-      document.getElementById('editProfileId').value = '';
-      document.getElementById('modalTitle').innerText = '+ Yeni VIP Üye Ekle';
-      document.getElementById('profileModal').classList.remove('hidden');
-    }
-
-    function closeProfileModal() {
-      document.getElementById('profileModal').classList.add('hidden');
-    }
-
-    function handleCoverUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        document.getElementById('pCoverPhoto').value = evt.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function handleVideoUpload(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        document.getElementById('pVideoUrl').value = evt.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function autoGenerateBio() {
-      const name = document.getElementById('pName').value || 'Masöz';
-      const city = document.getElementById('pCity').value;
-      const district = document.getElementById('pDistrict').value;
-      const title = document.getElementById('pTitle').value;
-      document.getElementById('pBio').value = `${city} ${district} bölgesinde ${title} olarak kendi nezih, hijyenik ve lüks ortamımda VIP masaj ve terapi hizmeti sunmaktayım. Randevu ve detaylı bilgi için WhatsApp üzerinden iletişime geçebilirsiniz.`;
-    }
-
-    function saveProfileForm(e) {
-      e.preventDefault();
-      const profiles = getStore();
-      const id = document.getElementById('editProfileId').value || `p-${Date.now()}`;
-      const checkedServices = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
-
-      const profileData = {
-        id: id,
-        name: document.getElementById('pName').value,
-        title: document.getElementById('pTitle').value,
-        category: document.getElementById('pCategory').value,
-        categoryName: document.getElementById('pTitle').value,
-        city: document.getElementById('pCity').value,
-        citySlug: document.getElementById('pCity').value.toLowerCase(),
-        district: document.getElementById('pDistrict').value,
-        packageType: document.getElementById('pPackage').value,
-        price: Number(document.getElementById('pPrice').value) || 3500,
-        phone: document.getElementById('pPhone').value || '05403225555',
-        whatsapp: document.getElementById('pPhone').value || '05403225555',
-        coverPhoto: document.getElementById('pCoverPhoto').value || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2',
-        videoUrl: document.getElementById('pVideoUrl').value || '',
-        services: checkedServices.length > 0 ? checkedServices : ["Tantra Masajı", "Relax Masaj"],
-        bio: document.getElementById('pBio').value,
-        isAvailable: true,
-        isVerified: true,
-        isPublished: true,
-        viewCount: 200
-      };
-
-      const existingIdx = profiles.findIndex(p => p.id === id);
-      if (existingIdx >= 0) {
-        profiles[existingIdx] = profileData;
-      } else {
-        profiles.unshift(profileData);
-      }
-
-      saveStore(profiles);
-      closeProfileModal();
-      renderProfiles();
-      alert('✓ Üye başarıyla kaydedildi ve canlı vitrine eklendi!');
-    }
-
-    function editProfile(id) {
-      const p = getStore().find(x => x.id === id);
-      if (!p) return;
-      document.getElementById('editProfileId').value = p.id;
-      document.getElementById('pName').value = p.name || '';
-      document.getElementById('pTitle').value = p.title || 'Bireysel Masöz';
-      document.getElementById('pCategory').value = p.category || 'masoz';
-      document.getElementById('pCity').value = p.city || 'İzmir';
-      updateDistricts();
-      document.getElementById('pDistrict').value = p.district || '';
-      document.getElementById('pPackage').value = p.packageType || 'DIAMOND';
-      document.getElementById('pPrice').value = p.price || 3500;
-      document.getElementById('pPhone').value = p.phone || '05403225555';
-      document.getElementById('pCoverPhoto').value = p.coverPhoto || '';
-      document.getElementById('pVideoUrl').value = p.videoUrl || '';
-      document.getElementById('pBio').value = p.bio || '';
-
-      document.querySelectorAll('input[name="services"]').forEach(cb => {
-        cb.checked = (p.services || []).includes(cb.value);
-      });
-
-      document.getElementById('modalTitle').innerText = 'Üye Düzenle: ' + p.name;
-      document.getElementById('profileModal').classList.remove('hidden');
-    }
-
-    function deleteProfile(id) {
-      if (confirm('Bu üyeyi silmek istediğinizden emin misiniz?')) {
-        const updated = getStore().filter(p => p.id !== id);
-        saveStore(updated);
-        renderProfiles();
-      }
-    }
-
-    function filterProfiles() {
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      document.querySelectorAll('#profileTableBody tr').forEach(row => {
-        row.style.display = row.innerText.toLowerCase().includes(q) ? '' : 'none';
-      });
-    }
-
-    // Başlangıç
-    initFormElements();
-    if (sessionStorage.getItem('tmv_admin_logged') === 'true') {
-      showDashboard();
-    }
+    renderTable();
   </script>
 </body>
 </html>
