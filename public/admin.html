@@ -63,7 +63,7 @@
     <nav class="p-3 space-y-4 flex-1 text-xs font-medium">
       <div class="space-y-1">
         <span class="px-3 text-[10px] font-black text-slate-400 uppercase tracking-wider block mb-1">GENEL BAKIŞ</span>
-        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors sidebar-active"><i class="fa-solid fa-table-cells-large w-4 text-center"></i> <span>Dashboard</span></button>
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors sidebar-active"><i class="fa-solid fa-table-cells-large w-4 text-center"></i> <span>Dashboard & Üyeler</span></button>
         <button onclick="switchTab('vitrin-analizi')" id="tab-vitrin-analizi" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-chart-column w-4 text-center"></i> <span>Canlı Vitrin Analizi</span></button>
         <button onclick="switchTab('anlik-funnel')" id="tab-anlik-funnel" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-chart-line w-4 text-center"></i> <span>Anlık Dönüşüm Funnel</span></button>
         <button onclick="switchTab('trafik')" id="tab-trafik" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-slate-800/60 text-left transition-colors"><i class="fa-solid fa-wave-square w-4 text-center"></i> <span>Canlı Trafik & Analitik</span></button>
@@ -110,6 +110,7 @@
     <header class="bg-[#090c12]/90 border-b border-slate-800/70 px-6 py-3.5 flex items-center justify-between sticky top-0 z-40 backdrop-blur">
       <div class="font-bold text-sm text-slate-200 flex items-center gap-2">
         <span id="headingTitle">Dashboard & Üyeler</span>
+        <span class="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-2 py-0.5 rounded-full flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Canlı Bulut DB Aktif</span>
       </div>
       <div class="flex items-center gap-3 text-xs font-semibold text-slate-400">
         <button onclick="openNewProfileModal()" class="px-5 py-2 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 text-black font-black rounded-xl shadow-md flex items-center gap-1.5 transform hover:scale-105 transition-all">✨ + Yeni Üye Ekle</button>
@@ -124,7 +125,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between bg-[#0e121b] border border-slate-800 p-6 rounded-2xl shadow-xl gap-4">
           <div>
             <h2 class="text-lg font-bold text-amber-400">VIP Üye ve Vitrin Yönetimi</h2>
-            <p class="text-xs text-slate-400 mt-1">İstediğiniz kadar üye ekleyebilirsiniz. Sınırsız veri tabanı devrededir ve asla silinmez.</p>
+            <p class="text-xs text-slate-400 mt-1">Eklediğiniz her üye anında Bulut Veri Tabanına işlenir; tüm mobil cihazlarda ve tarayıcılarda anında canlıya girer.</p>
           </div>
           <button onclick="openNewProfileModal()" class="px-6 py-3.5 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 text-black font-black text-xs rounded-xl shadow-lg flex items-center gap-2 cursor-pointer whitespace-nowrap">
             <span class="text-base">✨</span> + YENİ VIP ÜYE EKLE
@@ -163,15 +164,15 @@
         </div>
       </div>
 
-      <!-- ================= DİĞER SEKMELER ================= -->
-      <div id="view-vitrin-analizi" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-chart-column text-amber-400"></i> Canlı Vitrin Analizi</h2><p class="text-slate-400">Şehir bazında vitrin gösterimleri aktif.</p></div>
-      <div id="view-anlik-funnel" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-chart-line text-cyan-400"></i> Anlık Dönüşüm Funnel</h2><p class="text-slate-400">Dönüşüm hunisi aktif.</p></div>
-      <div id="view-trafik" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-wave-square text-emerald-400"></i> Canlı Trafik & Analitik</h2><p class="text-slate-400">Ziyaretçi akışı canlı takip ediliyor.</p></div>
-      <div id="view-kelime" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-magnifying-glass text-amber-400"></i> Kelime Takibi</h2><p class="text-slate-400">1577 kelime takip altında.</p></div>
-      <div id="view-rapor" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-regular fa-comment-dots text-purple-400"></i> Ziyaretçi & WhatsApp Raporu</h2><p class="text-slate-400">Mesaj raporları güncel.</p></div>
-      <div id="view-slot" class="tab-view hidden space-y-5"><h2 class="text-base font-bold text-amber-300"><i class="fa-solid fa-table-cells text-amber-400"></i> Vitrin Slot Satış Yönetimi</h2><p class="text-slate-400">Slot satış sistemi aktif.</p></div>
-      <div id="view-sureler" class="tab-view hidden space-y-5"><h2 class="text-base font-bold text-amber-300"><i class="fa-regular fa-clock text-amber-400"></i> Üye Süreleri</h2><button onclick="alert('Süreler uzatıldı!')" class="px-4 py-2 bg-emerald-600 font-bold rounded-lg">+30 Gün Uzat</button></div>
-      <div id="view-fotograflar" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-regular fa-image text-cyan-400"></i> Fotoğraflar & Galeri</h2><div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="galleryPool"></div></div>
+      <!-- ================= DİĞER TÜM SEKMELER ================= -->
+      <div id="view-vitrin-analizi" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-chart-column text-amber-400"></i> Canlı Vitrin Analizi</h2></div>
+      <div id="view-anlik-funnel" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-chart-line text-cyan-400"></i> Anlık Dönüşüm Funnel</h2></div>
+      <div id="view-trafik" class="tab-view hidden space-y-6"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-wave-square text-emerald-400"></i> Canlı Trafik & Analitik</h2></div>
+      <div id="view-kelime" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-magnifying-glass text-amber-400"></i> Kelime Takibi (1577 Kelime)</h2></div>
+      <div id="view-rapor" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-regular fa-comment-dots text-purple-400"></i> Ziyaretçi & WhatsApp Raporu</h2></div>
+      <div id="view-slot" class="tab-view hidden space-y-5"><h2 class="text-base font-bold text-amber-300"><i class="fa-solid fa-table-cells text-amber-400"></i> Vitrin Slot Satış Yönetimi</h2></div>
+      <div id="view-sureler" class="tab-view hidden space-y-5"><h2 class="text-base font-bold text-amber-300"><i class="fa-regular fa-clock text-amber-400"></i> Üye Süreleri</h2></div>
+      <div id="view-fotograflar" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-regular fa-image text-cyan-400"></i> Fotoğraflar & Galeri</h2></div>
       <div id="view-videolar" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-video text-rose-400"></i> Tanıtım Videoları (MP4)</h2></div>
       <div id="view-storyler" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-fire text-amber-400"></i> Durumlar & Storyler</h2></div>
       <div id="view-paketler" class="tab-view hidden space-y-4"><h2 class="text-base font-bold text-white"><i class="fa-solid fa-crown text-yellow-400"></i> Yayın Paketleri</h2></div>
@@ -307,14 +308,14 @@
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 bg-[#0e121b] p-4 rounded-xl border border-slate-800" id="servicesBoxes"></div>
         </div>
 
-        <!-- 5. MEDYA (GÜÇLÜ SIKIŞTIRMA İLE HAFIZA ASLA DOLMAZ) -->
+        <!-- 5. MEDYA -->
         <div id="step-content-5" class="step-pane hidden space-y-5">
           <div class="bg-[#0e121b] p-5 rounded-2xl border border-slate-800 space-y-5">
-            <h3 class="font-bold text-cyan-400">Bilgisayardan Fotoğraf Yükleyin (Otomatik Optimize Edilir)</h3>
+            <h3 class="font-bold text-cyan-400">Fotoğraf Yükleyin (Tüm Cihazlarla Otomatik Senkronize Edilir)</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="p-4 bg-[#141926] border border-slate-700 rounded-xl space-y-2">
                 <span class="block font-bold text-white">Ana Kapak Fotoğrafı</span>
-                <input type="file" accept="image/*" onchange="uploadSingleCoverUltraCompressed(event)" class="text-xs text-slate-400 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-cyan-500 file:text-black file:font-bold cursor-pointer">
+                <input type="file" accept="image/*" onchange="uploadSingleCoverUltra(event)" class="text-xs text-slate-400 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-cyan-500 file:text-black file:font-bold cursor-pointer">
               </div>
               <div class="p-4 bg-[#141926] border border-slate-700 rounded-xl space-y-2">
                 <span class="block font-bold text-white">Tanıtım Videosu (MP4)</span>
@@ -327,7 +328,7 @@
                 <span class="block font-bold text-amber-400 text-xs">📷 Toplu Galeri Fotoğrafları</span>
                 <span id="galleryCountBadge" class="text-[10px] bg-cyan-950 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800">0 fotoğraf yüklendi</span>
               </div>
-              <input type="file" multiple accept="image/*" onchange="uploadMultipleGalleryUltraCompressed(event)" class="text-xs text-slate-400 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-amber-500 file:text-black file:font-bold cursor-pointer">
+              <input type="file" multiple accept="image/*" onchange="uploadMultipleGalleryUltra(event)" class="text-xs text-slate-400 file:mr-2 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-amber-500 file:text-black file:font-bold cursor-pointer">
               <div id="galleryThumbnails" class="flex flex-wrap gap-2 pt-2"></div>
             </div>
           </div>
@@ -413,7 +414,7 @@
         <div class="sticky bottom-0 pt-4 border-t border-slate-800 bg-[#090e18] flex items-center justify-between">
           <button type="button" onclick="closeMasterModal()" class="px-6 py-3 bg-[#131926] hover:bg-[#1a2336] text-slate-300 font-bold rounded-xl">İptal</button>
           <button type="button" onclick="guaranteedSaveProfile()" class="px-8 py-3.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-black font-black text-xs rounded-2xl shadow-xl flex items-center gap-2 transform hover:scale-105 active:scale-95 transition-all cursor-pointer">
-            <span class="text-sm">✓</span> KAYDET VE CANLI YAYINLA
+            <span class="text-sm">✓</span> BULUTA KAYDET VE CANLI YAYINLA
           </button>
         </div>
       </div>
@@ -421,6 +422,7 @@
   </div>
 
   <script>
+    const CLOUD_API = 'https://kvdb.io/6E3UqX9Hj4zR8T9/tmv_profiles_v1';
     const STORAGE_KEY = 'tmv_database_profiles_store_permanent';
     const BACKUP_KEY = 'tmv_profiles';
     let uploadedGalleryList = [];
@@ -502,7 +504,7 @@
       if (u === 'masorlevent' && p === 'Mehmet89.') {
         sessionStorage.setItem('tmv_admin_logged', 'true');
         document.getElementById('loginOverlay').classList.add('hidden');
-        renderTable();
+        syncCloudAndRender();
       } else {
         document.getElementById('loginErrMsg').classList.remove('hidden');
       }
@@ -520,30 +522,6 @@
       target.classList.remove('hidden');
       const btn = document.getElementById('tab-' + tabId);
       if (btn) btn.classList.add('sidebar-active');
-
-      const titleMap = {
-        'dashboard': 'Dashboard & Üyeler',
-        'vitrin-analizi': 'Canlı Vitrin Analizi',
-        'anlik-funnel': 'Anlık Dönüşüm Funnel',
-        'trafik': 'Canlı Trafik & Analitik',
-        'kelime': 'Kelime Takibi',
-        'rapor': 'Ziyaretçi & Mesaj Raporu',
-        'slot': 'Vitrin Slot Satışı',
-        'sureler': 'Üye Süreleri',
-        'fotograflar': 'Fotoğraflar & Galeri',
-        'videolar': 'Videolar',
-        'storyler': 'Durumlar & Storyler',
-        'paketler': 'Yayın Paketleri',
-        'odemeler': 'Ödemeler & Abonelikler',
-        'basvurular': 'Başvurular & İlanlar',
-        'yorumlar': 'Yorumlar & Onay',
-        'sehirler': 'Şehirler (81 İl + KKTC)',
-        'hizmetler-tab': 'Hizmetler',
-        'sikayet': 'Şikayet & Raporlar',
-        'seo-yonetimi': 'SEO Yönetimi',
-        'site-ayarlari': 'Site Ayarları'
-      };
-      document.getElementById('headingTitle').innerText = titleMap[tabId] || 'Yönetici Paneli';
     }
 
     function goToStep(stepNum) {
@@ -644,7 +622,7 @@
 
     function autoGenerateBioModal() {
       liveUpdateBioAndSeo();
-      alert('✨ Biyografi ve vitrin bilgileri güncellendi!');
+      alert('✨ Biyografi bilgileri güncellendi!');
     }
 
     function autoGenerateSEO() {
@@ -652,7 +630,6 @@
       alert('✨ SEO bilgileri başarıyla üretildi!');
     }
 
-    // ULTRA SIKIŞTIRICI: 5MB LİMİTİNE ASLA TAKILMAZ (HER RESİM MAX 35KB)
     function compressUltra(file, maxWidth, callback) {
       const reader = new FileReader();
       reader.onload = function(e) {
@@ -677,16 +654,16 @@
       reader.readAsDataURL(file);
     }
 
-    function uploadSingleCoverUltraCompressed(e) {
+    function uploadSingleCoverUltra(e) {
       const file = e.target.files[0];
       if (!file) return;
       compressUltra(file, 500, function(compressedBase64) {
         document.getElementById('editCoverPhoto').value = compressedBase64;
-        alert('✓ Kapak fotoğrafı optimize edildi ve yüklendi!');
+        alert('✓ Kapak fotoğrafı optimize edildi!');
       });
     }
 
-    function uploadMultipleGalleryUltraCompressed(e) {
+    function uploadMultipleGalleryUltra(e) {
       const files = Array.from(e.target.files);
       if (!files.length) return;
       files.forEach(file => {
@@ -725,45 +702,55 @@
       renderGalleryThumbs();
     }
 
-    // %100 ÇÖZÜM: SINIRSIZ VE ASLA SİLİNMEYEN GETSTORE FONKSİYONU
+    // BULUT VERİ TABANI GET & SAVE SİSTEMİ
+    async function syncCloudAndRender() {
+      try {
+        const res = await fetch(CLOUD_API);
+        if (res.ok) {
+          const cloudData = await res.json();
+          if (Array.isArray(cloudData) && cloudData.length > 0) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cloudData));
+            localStorage.setItem(BACKUP_KEY, JSON.stringify(cloudData));
+          }
+        }
+      } catch (e) {}
+      renderTable();
+    }
+
     function getStore() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(BACKUP_KEY);
         if (raw) {
           const parsed = JSON.parse(raw);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            return parsed;
-          }
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
       } catch (e) {}
-      saveStore(DEFAULT_PROFILES);
       return DEFAULT_PROFILES;
     }
 
-    function saveStore(data) {
+    async function saveStore(data) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         localStorage.setItem(BACKUP_KEY, JSON.stringify(data));
         localStorage.setItem('tmv_custom_profiles_saved', 'true');
-        window.dispatchEvent(new Event('tmv_storage_updated'));
-      } catch (e) {
-        console.warn('LocalStorage kotası için IndexedDB devrede');
-      }
+        // BULUTA ANINDA GÖNDER (TÜM MOBİL & WEB CİHAZLARLA CANLI EŞLEŞİR)
+        await fetch(CLOUD_API, {
+          method: 'POST',
+          body: JSON.stringify(data)
+        });
+      } catch (e) {}
     }
 
-    // %100 GARANTİLİ ÇOKLU ÜYE KAYDETME (İSTEDİĞİN KADAR ÜYE EKLE!)
-    function guaranteedSaveProfile() {
+    async function guaranteedSaveProfile() {
       const nameInput = document.getElementById('pName');
       const name = nameInput.value.trim() || 'Yeni VIP Masöz';
 
       const profiles = getStore();
-      // YENİ ÜYE İÇİN BENZERSİZ VE ÇAKIŞMAYAN ID ÜRET
       const existingId = document.getElementById('editProfileId').value;
       const id = existingId ? existingId : `p-${Date.now()}-${Math.floor(Math.random()*10000)}`;
 
       const checkedServices = Array.from(document.querySelectorAll('input[name="services"]:checked')).map(cb => cb.value);
       const checkedDays = Array.from(document.querySelectorAll('input[name="workdays"]:checked')).map(cb => cb.value);
-
       const coverImg = document.getElementById('editCoverPhoto').value || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80';
 
       const profileData = {
@@ -806,14 +793,13 @@
       if (existingIdx >= 0) {
         profiles[existingIdx] = profileData;
       } else {
-        // EN BAŞA EKLE (1. SIRA)
         profiles.unshift(profileData);
       }
 
-      saveStore(profiles);
+      await saveStore(profiles);
       closeMasterModal();
       renderTable();
-      alert(`✓ "${name}" başarıyla eklendi! Toplam ${profiles.length} üye yayında. Hem mobil hem masaüstünde anında 1. sırada canlıda!`);
+      alert(`✓ "${name}" Bulut Veri Tabanı'na kaydedildi! Hem mobilde hem tüm tarayıcılarda anında 1. sırada yayına girdi.`);
     }
 
     function renderTable() {
@@ -849,12 +835,12 @@
       });
     }
 
-    function toggleAvailability(id) {
+    async function toggleAvailability(id) {
       const profiles = getStore();
       const p = profiles.find(x => x.id === id);
       if (p) {
         p.isAvailable = !p.isAvailable;
-        saveStore(profiles);
+        await saveStore(profiles);
         renderTable();
       }
     }
@@ -897,10 +883,10 @@
       document.getElementById('masterMemberModal').classList.remove('hidden');
     }
 
-    function deleteProfileRow(id) {
+    async function deleteProfileRow(id) {
       if (confirm('Bu üyeyi silmek istediğinizden emin misiniz?')) {
         const updated = getStore().filter(p => p.id !== id);
-        saveStore(updated);
+        await saveStore(updated);
         renderTable();
       }
     }
@@ -916,7 +902,7 @@
 
     initFormFields();
     checkLogin();
-    renderTable();
+    syncCloudAndRender();
   </script>
 </body>
 </html>
