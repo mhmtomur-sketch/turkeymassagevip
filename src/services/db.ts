@@ -1,19 +1,4 @@
-﻿const CLOUD_API = 'https://kvdb.io/6E3UqX9Hj4zR8T9/tmv_profiles_v1';
-
-// Buluttan otomatik veri çekme (Mobil ve Farklı Cihazlar İçin)
-if (typeof window !== 'undefined') {
-  fetch(CLOUD_API)
-    .then(res => res.json())
-    .then(data => {
-      if (Array.isArray(data) && data.length > 0) {
-        localStorage.setItem('tmv_profiles', JSON.stringify(data));
-        localStorage.setItem('tmv_database_profiles_store_permanent', JSON.stringify(data));
-        window.dispatchEvent(new Event('tmv_storage_updated'));
-      }
-    })
-    .catch(() => {});
-}
-import { Profile } from '../types';
+﻿import { Profile } from '../types';
 
 export const DISPLAY_WHATSAPP_NUMBER = '05403225555';
 export const DISPLAY_PHONE_NUMBER = '05403225555';
@@ -882,4 +867,3 @@ export const db = {
     };
   }
 };
-

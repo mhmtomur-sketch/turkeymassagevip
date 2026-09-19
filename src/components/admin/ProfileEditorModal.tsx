@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+﻿import React, { useState, useRef } from 'react';
 import { db } from '../../services/db';
 import { Profile } from '../../types';
 import {
@@ -109,6 +109,8 @@ const CITY_DISTRICTS_MAP: Record<string, string[]> = {
 };
 
 export function ProfileEditorModal({ isOpen, profile, onClose, onSave, onSaved }: ProfileEditorModalProps) {
+  if (isOpen === false) return null;
+
   const [activeTab, setActiveTab] = useState<number>(1);
   const coverFileRef = useRef<HTMLInputElement>(null);
   const photosFileRef = useRef<HTMLInputElement>(null);
@@ -309,8 +311,6 @@ export function ProfileEditorModal({ isOpen, profile, onClose, onSave, onSaved }
   ];
 
   const cityDistricts = CITY_DISTRICTS_MAP[formData.city || 'İzmir'] || ['Merkez', 'Alsancak', 'Kadıköy', 'Çankaya'];
-
-  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
