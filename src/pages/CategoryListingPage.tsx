@@ -1,4 +1,4 @@
-﻿import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Sparkles, MapPin, PlusCircle, AlertCircle } from 'lucide-react';
 import { ShowcaseGrid } from '../components/showcase/ShowcaseGrid';
@@ -9,22 +9,23 @@ import { db } from '../services/db';
 import { Profile } from '../types';
 
 export const CategoryListingPage: React.FC = () => {
-  const { category: categorySlug } = useParams<{ category: string }>();
+  const { category, categorySlug } = useParams<{ category?: string; categorySlug?: string }>();
+  const activeCategorySlug = categorySlug || category || '';
   const [selectedDetailProfile, setSelectedDetailProfile] = useState<Profile | null>(null);
   const { selectedCity } = useGeoLocation();
   const profiles = db.getProfiles();
-  const catObj = getCategoryBySlug(categorySlug || '');
+  const catObj = getCategoryBySlug(activeCategorySlug);
 
   const filteredProfiles = useMemo(() => {
-    if (!categorySlug) return profiles;
+    if (!activeCategorySlug) return profiles;
     return profiles.filter((p) => {
-      const matchesCat = p.category?.toLowerCase() === categorySlug.toLowerCase();
+      const matchesCat = p.category?.toLowerCase() === activeCategorySlug.toLowerCase();
       if (selectedCity && selectedCity.slug) {
         return matchesCat && p.citySlug?.toLowerCase() === selectedCity.slug.toLowerCase();
       }
       return matchesCat;
     });
-  }, [profiles, categorySlug, selectedCity]);
+  }, [profiles, activeCategorySlug, selectedCity]);
 
   const cityName = selectedCity?.name || 'TÜRKİYE';
   const catTitle = catObj ? catObj.title : 'Kategori';
@@ -69,7 +70,7 @@ export const CategoryListingPage: React.FC = () => {
               key={c.id}
               to={`/kategori/${c.slug}`}
               className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                c.slug === categorySlug
+                c.slug === activeCategorySlug
                   ? 'bg-cyan-500 text-black shadow-lg shadow-cyan-500/30'
                   : 'bg-dark-900/90 border border-white/10 text-slate-300 hover:border-cyan-400 hover:text-white'
               }`}

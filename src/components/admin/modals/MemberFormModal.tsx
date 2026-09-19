@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { X, Sparkles, Plus, Trash2, Check, Search } from 'lucide-react';
 import { Profile } from '../../../types';
 import { db, slugifyTurkish } from '../../../services/db';
@@ -13,8 +13,6 @@ interface MemberFormModalProps {
 }
 
 export function MemberFormModal({ isOpen, onClose, onSuccess, initialData }: MemberFormModalProps) {
-  if (!isOpen) return null;
-
   const allCities = [...TURKEY_CITIES, ...KKTC_CITIES];
   const [name, setName] = useState(initialData?.name || '');
   const [title, setTitle] = useState(initialData?.title || '');
@@ -102,6 +100,8 @@ export function MemberFormModal({ isOpen, onClose, onSuccess, initialData }: Mem
     onSuccess();
     onClose();
   };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">

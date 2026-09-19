@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
@@ -6,12 +6,24 @@ import { HomePage } from './pages/HomePage';
 import { ProfileDetailPage } from './pages/ProfileDetailPage';
 import { AdminPage } from './pages/AdminPage';
 import { CityLandingPage } from './pages/CityLandingPage';
+import { CategoryListingPage } from './pages/CategoryListingPage';
+import { PackagesPage } from './pages/PackagesPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { AdSubmitModal } from './components/forms/AdSubmitModal';
+import { PackageType } from './types';
 
 export function App() {
   const location = useLocation();
   const [isAdminState, setIsAdminState] = useState(() => {
     return window.location.href.toLowerCase().includes('admin');
   });
+  const [isAdModalOpen, setIsAdModalOpen] = useState(false);
+  const [selectedPackageForAd, setSelectedPackageForAd] = useState<PackageType>('DIAMOND');
+
+  const handleOpenAdModal = (pkg: PackageType = 'DIAMOND') => {
+    setSelectedPackageForAd(pkg);
+    setIsAdModalOpen(true);
+  };
 
   useEffect(() => {
     if (window.location.href.toLowerCase().includes('admin')) {
@@ -77,20 +89,29 @@ export function App() {
         </button>
       </div>
 
-      <Header />
+      <Header onOpenAdModal={() => handleOpenAdModal('DIAMOND')} />
 
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profil/:slug" element={<ProfileDetailPage />} />
-          <Route path="/kategori/:categorySlug" element={<CityLandingPage />} />
+          <Route path="/paketler" element={<PackagesPage onOpenAdModal={handleOpenAdModal} />} />
+          <Route path="/ilan-ver" element={<PackagesPage onOpenAdModal={handleOpenAdModal} />} />
+          <Route path="/kategori/:categorySlug" element={<CategoryListingPage />} />
           <Route path="/:citySlug" element={<CityLandingPage />} />
           <Route path="/:citySlug/:districtOrCategory" element={<CityLandingPage />} />
           <Route path="/:citySlug/:districtOrCategory/:categorySlug" element={<CityLandingPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
 
       <Footer />
+
+      <AdSubmitModal
+        isOpen={isAdModalOpen}
+        onClose={() => setIsAdModalOpen(false)}
+        initialPackage={selectedPackageForAd}
+      />
     </div>
   );
 }
