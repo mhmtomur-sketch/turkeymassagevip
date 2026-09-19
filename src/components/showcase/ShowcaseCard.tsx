@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
+import { Sparkles, CheckCircle2, MapPin, Phone, MessageCircle } from 'lucide-react';
 import { Profile } from '../../types';
 
 interface ShowcaseCardProps {
@@ -8,111 +9,108 @@ interface ShowcaseCardProps {
 }
 
 export function ShowcaseCard({ profile, index = 0 }: ShowcaseCardProps) {
+  const pkgType = (profile.packageType || 'DIAMOND').toUpperCase();
+  const isDiamond = pkgType === 'DIAMOND';
+  const isPremium = pkgType === 'PREMIUM';
+  const isGold = pkgType === 'GOLD';
+
   const cleanPhone = (profile.whatsapp || profile.phone || '05403225555').replace(/[^0-9]/g, '');
-  const intlPhone = cleanPhone.startsWith('0') ? `90${cleanPhone.slice(1)}` : cleanPhone.startsWith('90') ? cleanPhone : `90${cleanPhone}`;
+  const intlPhone = cleanPhone.startsWith('0') ? `90${cleanPhone.slice(1)}` : cleanPhone;
   const waLink = `https://wa.me/${intlPhone}?text=${encodeURIComponent(`Merhaba ${profile.name}, ilanınızı Turkey Massage VIP sitesinde gördüm, randevu almak istiyorum.`)}`;
 
-  // Ekran görüntünüzdeki canlı neon renkleri
-  const neonPalette = [
-    { border: '#facc15', glow: 'rgba(250, 204, 21, 0.55)' }, // Sarı
-    { border: '#f43f5e', glow: 'rgba(244, 63, 94, 0.55)' },  // Kırmızı / Gül
-    { border: '#67e8f9', glow: 'rgba(103, 232, 249, 0.55)' }, // Açık Mavi / Beyazımsı
-    { border: '#34d399', glow: 'rgba(52, 211, 153, 0.55)' }, // Zümrüt Yeşili
-    { border: '#ec4899', glow: 'rgba(236, 72, 153, 0.55)' }, // Neon Pembe
-    { border: '#a855f7', glow: 'rgba(168, 85, 247, 0.55)' }, // Mor
-    { border: '#fb923c', glow: 'rgba(251, 146, 60, 0.55)' }, // Turuncu
-    { border: '#38bdf8', glow: 'rgba(56, 189, 248, 0.55)' }  // Gökyüzü Mavisi
-  ];
-  const neon = neonPalette[index % neonPalette.length];
-
-  const photo = profile.coverPhoto || profile.photos?.[0] || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80';
-  const age = profile.age || 22;
-  const district = profile.district || profile.city || 'Konak';
-  const price = profile.price || 4000;
+  const neonClass = `neon-card-${index % 12}`;
 
   return (
-    <div 
-      className="relative rounded-2xl overflow-hidden bg-[#0a0d14] flex flex-col transition-transform duration-300 hover:-translate-y-1 group"
-      style={{
-        border: `2px solid ${neon.border}`,
-        boxShadow: `0 0 16px ${neon.glow}, inset 0 0 8px ${neon.glow}`
-      }}
-    >
-      <Link to={`/profil/${profile.slug}`} className="block relative aspect-[3/3.8] overflow-hidden">
-        {/* Fotoğraf */}
-        <img 
-          src={photo} 
+    <div className={`group relative rounded-xl sm:rounded-2xl overflow-hidden ${neonClass} transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl flex flex-col bg-slate-950 aspect-[3/4.6]`}>
+      <Link to={`/profil/${profile.slug}`} className="relative w-full h-full block">
+        {/* %100 PARLAK DOĞAL FOTOĞRAF */}
+        <img
+          src={profile.coverPhoto || profile.photos?.[0]}
           alt={profile.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          style={{ objectPosition: 'center 20%' }}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-100"
+          loading={index < 4 ? 'eager' : 'lazy'}
         />
 
-        {/* Sol Üst Rozet: 💙 VIP */}
-        <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-md bg-[#facc15] text-black font-black text-[10px] tracking-wide flex items-center gap-1 shadow-md">
-            <span>💙</span> VIP
-          </span>
+        {/* SOL ÜST ALAN: PAKET ROZETİ VE HEMEN ALTINDA FİYAT ETİKETİ (ÜST ÜSTE, TAŞMAZ!) */}
+        <div className="absolute top-1 left-1 flex flex-col items-start gap-1 z-10">
+          <div className="flex items-center gap-1">
+            {isDiamond && (
+              <span className="px-1.5 py-0.5 rounded bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-950 font-black text-[7.5px] sm:text-[9px] uppercase tracking-wider shadow flex items-center gap-0.5">
+                <Sparkles className="w-2 h-2 animate-pulse" /> DIAMOND
+              </span>
+            )}
+            {isPremium && (
+              <span className="px-1.5 py-0.5 rounded bg-cyan-500 text-slate-950 font-black text-[7.5px] sm:text-[9px] uppercase tracking-wider shadow">
+                👑 PRM
+              </span>
+            )}
+            {isGold && (
+              <span className="px-1.5 py-0.5 rounded bg-yellow-400 text-slate-950 font-black text-[7.5px] sm:text-[9px] uppercase tracking-wider shadow">
+                ⭐ GOLD
+              </span>
+            )}
+            {!isDiamond && !isPremium && !isGold && (
+              <span className="px-1.5 py-0.5 rounded bg-slate-300 text-slate-950 font-black text-[7.5px] sm:text-[9px] uppercase tracking-wider shadow">
+                ⚪ SLV
+              </span>
+            )}
+
+            {/* YANIP SÖNEN YEŞİL MÜSAİTLİK IŞIĞI */}
+            {profile.isAvailable && (
+              <div className="relative flex items-center justify-center w-3 h-3 bg-slate-950/80 rounded-full p-0.5 shadow border border-emerald-400/60">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+              </div>
+            )}
+          </div>
+
+          {/* FİYAT ETİKETİ - PAKETİN HEMEN ALTINDA */}
+          <div className="px-1.5 py-0.5 rounded bg-slate-950/85 text-amber-300 font-black text-[8px] sm:text-[10px] border border-amber-400/40 shadow">
+            {profile.price ? `${profile.price}` : '2500'} ₺
+          </div>
         </div>
 
-        {/* Sağ Üst Rozet: ✓ ONAYLI */}
-        <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-md bg-[#22d3ee] text-black font-black text-[10px] tracking-wide flex items-center gap-1 shadow-md">
-            <span>✓</span> ONAYLI
-          </span>
-        </div>
+        {/* ALT ALAN: İSİM + ŞEHİR + RESPONSIVE WHATSAPP / ARA BUTONLARI */}
+        <div className="absolute bottom-0 inset-x-0 p-1 sm:p-1.5 z-10 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end space-y-1">
+          <div>
+            <div className="flex items-center gap-0.5">
+              <h3 className="font-black text-white text-[9px] sm:text-xs leading-tight line-clamp-1 group-hover:text-amber-400 transition-colors drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+                {profile.name}
+              </h3>
+              {profile.isVerified && (
+                <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400 flex-shrink-0 drop-shadow" />
+              )}
+            </div>
 
-        {/* Sağ Alt Fiyat: 4000 ₺ */}
-        <div className="absolute bottom-2.5 right-2.5 z-10 pointer-events-none">
-          <span className="px-3 py-1 rounded-lg bg-black/85 border border-[#facc15]/80 text-[#facc15] font-black text-xs shadow-lg">
-            {price} ₺
-          </span>
+            <div className="flex items-center gap-0.5 text-[7.5px] sm:text-[9px] text-amber-300 font-bold drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]">
+              <MapPin className="w-2 h-2 text-amber-400 flex-shrink-0" />
+              <span className="truncate">{profile.city}</span>
+            </div>
+          </div>
+
+          {/* ASLA TAŞMAYAN MİKRO İLETİŞİM BUTONLARI */}
+          <div className="grid grid-cols-2 gap-1 pt-0.5">
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="py-1 px-0.5 rounded-md bg-emerald-600 hover:bg-emerald-500 text-white font-black text-[8px] sm:text-[9px] flex items-center justify-center gap-0.5 shadow transition-all active:scale-95 z-20"
+            >
+              <MessageCircle className="w-2.5 h-2.5 flex-shrink-0" />
+              <span>{isDiamond ? 'WhatsApp' : 'WA'}</span>
+            </a>
+            <a
+              href={`tel:${profile.phone || profile.whatsapp || '05403225555'}`}
+              onClick={(e) => e.stopPropagation()}
+              className="py-1 px-0.5 rounded-md bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-[8px] sm:text-[9px] flex items-center justify-center gap-0.5 shadow transition-all active:scale-95 z-20"
+            >
+              <Phone className="w-2.5 h-2.5 flex-shrink-0" />
+              <span>Ara</span>
+            </a>
+          </div>
         </div>
       </Link>
-
-      {/* Kart Alt Bilgileri */}
-      <div className="p-3.5 flex flex-col justify-between flex-1 bg-[#0a0d14] space-y-2">
-        {/* İsim ve Yaş */}
-        <div className="flex items-center gap-1.5">
-          <h3 className="font-black text-white text-sm sm:text-base tracking-wide truncate">
-            {profile.name}
-          </h3>
-          <span className="text-slate-400 text-xs font-normal shrink-0">
-            ({age})
-          </span>
-        </div>
-
-        {/* Konum ve Yıldız Puanı */}
-        <div className="flex items-center justify-between text-xs font-semibold">
-          <div className="flex items-center gap-1 text-slate-300">
-            <span className="text-pink-500">📍</span>
-            <span>{district}</span>
-          </div>
-          <div className="flex items-center gap-1 text-amber-400 font-black">
-            <span>★</span>
-            <span>5.0</span>
-          </div>
-        </div>
-
-        {/* Aksiyon Butonları: WhatsApp & Ara */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          <a 
-            href={waLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="py-2 px-2 bg-[#10b981] hover:bg-[#059669] text-black font-black text-xs rounded-xl flex items-center justify-center gap-1 shadow transition-all active:scale-95"
-          >
-            WhatsApp
-          </a>
-          <a 
-            href={`tel:${cleanPhone}`}
-            onClick={(e) => e.stopPropagation()}
-            className="py-2 px-2 bg-[#172033] hover:bg-[#222f4c] text-white font-bold text-xs rounded-xl border border-slate-700/60 flex items-center justify-center gap-1 shadow transition-all active:scale-95"
-          >
-            Ara
-          </a>
-        </div>
-      </div>
     </div>
   );
 }

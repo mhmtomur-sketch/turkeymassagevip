@@ -51,33 +51,3 @@
     animation: none !important;
   }
 }
-
-/* ===== NEON KART GLOWING BORDER SİSTEMİ ===== */
-.neon-card-led {
-  position: relative;
-  border: 2px solid var(--neon-color, #ffd700);
-  box-shadow: 0 0 10px var(--neon-color, #ffd700), 0 0 20px var(--neon-color, #ffd700), inset 0 0 8px rgba(255,215,0,0.04);
-  animation: neonPulse 3s ease-in-out infinite;
-}
-
-@keyframes neonPulse {
-  0%, 100% {
-    box-shadow: 0 0 8px var(--neon-color, #ffd700), 0 0 18px var(--neon-color, #ffd700);
-  }
-  50% {
-    box-shadow: 0 0 18px var(--neon-color, #ffd700), 0 0 36px var(--neon-color, #ffd700), 0 0 60px var(--neon-color, #ffd700);
-  }
-}
-
-.neon-delay-0 { --neon-color: #ffd700; animation-delay: 0s; }
-.neon-delay-1 { --neon-color: #00f0ff; animation-delay: -0.5s; }
-.neon-delay-2 { --neon-color: #a855f7; animation-delay: -1s; }
-.neon-delay-3 { --neon-color: #00ff88; animation-delay: -1.5s; }
-.neon-delay-4 { --neon-color: #ff0066; animation-delay: -2s; }
-.neon-delay-5 { --neon-color: #ff6600; animation-delay: -2.5s; }
-.neon-delay-6 { --neon-color: #ff00cc; animation-delay: -3s; }
-.neon-delay-7 { --neon-color: #00bfff; animation-delay: -3.5s; }
-
-@media (prefers-reduced-motion: reduce) {
-  .neon-card-led { animation: none !important; }
-}
